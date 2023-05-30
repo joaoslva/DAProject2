@@ -22,7 +22,7 @@ int Graph::createRealworldGraph(const std::string& nodesFilePath, const std::str
         std::getline(iss, longitude, ',');
         std::getline(iss, latitude, ',');
 
-        this->nodes.push_back(new Node(std::stoi(index), std::stod(latitude), std::stod(longitude)));
+        addNode(std::stoi(index), std::stod(latitude), std::stod(longitude));
     }
     nodesFile.close();
 
@@ -53,7 +53,7 @@ int Graph::createRealworldGraph(const std::string& nodesFilePath, const std::str
             return 1;
         }
 
-        addBidirectionalEdge(sourceNode->getIndex(), destinyNode->getIndex(), Edge(sourceNode, destinyNode, std::stol(distance)));
+        addBidirectionalEdge(sourceNode->getIndex(), destinyNode->getIndex(), std::stol(distance));
     }
 
     edgesFile.close();
@@ -105,7 +105,7 @@ int Graph::createExtraGraphs(const std::string &edgesFilePath) {
             return 1;
         }
 
-        addBidirectionalEdge(sourceNode->getIndex(), destinyNode->getIndex(), Edge(sourceNode, destinyNode, std::stod(distance)));
+        addBidirectionalEdge(sourceNode->getIndex(), destinyNode->getIndex(), std::stod(distance));
     }
 
     return 0;
@@ -154,20 +154,19 @@ int Graph::createToyGraph(const std::string& filePath) {
             return 1;
         }
 
-        addBidirectionalEdge(sourceNode->getIndex(), destinyNode->getIndex(), Edge(sourceNode, destinyNode, std::stod(distance)));
+        addBidirectionalEdge(sourceNode->getIndex(), destinyNode->getIndex(), std::stod(distance));
     }
     return 0;
 }
 
-bool Graph::addNode(Node node) {
-    if(findNode(node.getIndex()) != nullptr){
+bool Graph::addNode(const int &nodeIndex, double latitude, double longitude) {
+    if (findNode(nodeIndex) != nullptr)
         return false;
-    }
-    this->nodes.push_back(new Node(node));
+    nodes.push_back(new Node(nodeIndex, latitude, longitude));
     return true;
 }
 
-bool Graph::addEdge(const int sourceIndex, const int destinyIndex, Edge edge) {
+bool Graph::addBidirectionalEdge(const int &sourceIndex, const int &destinyIndex, double distance) {
     Node* sourceNode = findNode(sourceIndex);
     Node* destinyNode = findNode(destinyIndex);
 
@@ -175,20 +174,8 @@ bool Graph::addEdge(const int sourceIndex, const int destinyIndex, Edge edge) {
         return false;
     }
 
-    sourceNode->addEdge(destinyNode, edge.getDistance());
-    return true;
-}
-
-bool Graph::addBidirectionalEdge(const int sourceIndex, const int destinyIndex, Edge edge) {
-    Node* sourceNode = findNode(sourceIndex);
-    Node* destinyNode = findNode(destinyIndex);
-
-    if(sourceNode == nullptr || destinyNode == nullptr){
-        return false;
-    }
-
-    Edge* e1 = sourceNode->addEdge(destinyNode, edge.getDistance());
-    Edge* e2 = destinyNode->addEdge(sourceNode, edge.getDistance());
+    Edge* e1 = sourceNode->addEdge(destinyNode, distance);
+    Edge* e2 = destinyNode->addEdge(sourceNode, distance);
     e1->setReverse(e2);
     e2->setReverse(e1);
 
@@ -208,36 +195,14 @@ std::vector<Node*> Graph::getNodes() {
     return this->nodes;
 }
 
-int Graph::clearNodes() {
-    for(Node* node: this->nodes){
-        removeNode(node->getIndex());
+void Graph::clearNodes() {
+    for (auto it = nodes.begin(); it != nodes.end(); it++) {
+        auto v = *it;
+        v->removeOutgoingEdges();
+        for (auto u : nodes) {
+            u->removeEdge(v->getIndex());
+        }
+        it = nodes.erase(it);
+        delete v;
     }
-    return 0;
-}
-
-bool Graph::removeNode(int index) {
-    Node* node = findNode(index);
-
-    if(node == nullptr){
-        return false;
-    }
-
-    std::vector<Edge*> outgoingEdges = node->getOutgoingEdges();
-    for(Edge* edge: outgoingEdges){
-        node->removeEdge(edge);
-    }
-
-    std::vector<Edge*> incomingEdges = node->getIncomingEdges();
-    for(Edge* edge: incomingEdges){
-        Node* sourceNode = edge->getSourceNode();
-        sourceNode->removeEdge(edge);
-    }
-
-    auto itr = std::find(this->nodes.begin(), this->nodes.end(), node);
-    if(itr != this->nodes.end()){
-        this->nodes.erase(itr);
-        delete node;
-        return true;
-    }
-    return false;
 }

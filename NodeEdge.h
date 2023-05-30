@@ -12,8 +12,9 @@ public:
     Node(int index); //used for extra graphs
 
     Edge* addEdge(Node* destinyNode, double distance);
-    void removeEdge(Edge* edge);
+    bool removeEdge(int destID);
     void deleteEdge(Edge* edge);
+    void removeOutgoingEdges();
 
     int getIndex();
     std::vector<Edge*> getOutgoingEdges();

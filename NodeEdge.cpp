@@ -35,19 +35,22 @@ void Node::deleteEdge(Edge *edge) {
     delete edge;
 }
 
-void Node::removeEdge(Edge *edge) {
-    auto itr = this->outgoingEdges.begin();
-    while (itr != this->outgoingEdges.end()){
-        Edge* e = *itr;
-        Node* n = e->getDestinyNode();
-        if(n->getIndex() == edge->getDestinyNode()->getIndex()){
-            itr = this->outgoingEdges.erase(itr);
-            deleteEdge(e);
+bool Node::removeEdge(int destID) {
+    bool removedEdge = false;
+    auto it = outgoingEdges.begin();
+    while (it != outgoingEdges.end()) {
+        Edge *edge = *it;
+        Node *dest = edge->getDestinyNode();
+        if (dest->getIndex() == destID) {
+            it = outgoingEdges.erase(it);
+            deleteEdge(edge);
+            removedEdge = true;
         }
-        else{
-            itr++;
+        else {
+            it++;
         }
     }
+    return removedEdge;
 }
 
 int Node::getIndex() {
@@ -60,6 +63,15 @@ std::vector<Edge*> Node::getOutgoingEdges() {
 
 std::vector<Edge*> Node::getIncomingEdges() {
     return this->incomingEdges;
+}
+
+void Node::removeOutgoingEdges() {
+    auto it = outgoingEdges.begin();
+    while (it != outgoingEdges.end()) {
+        Edge *edge = *it;
+        it = outgoingEdges.erase(it);
+        deleteEdge(edge);
+    }
 }
 
 //Edge stuff

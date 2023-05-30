@@ -15,16 +15,14 @@ public:
     int createRealworldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath);
     int createExtraGraphs(const std::string& edgesFilePath);
     int createToyGraph(const std::string& filePath);
-    bool addNode(Node node);
-    bool addEdge(int sourceIndex, int destinyIndex, Edge edge);
-    bool addBidirectionalEdge(int sourceIndex, int destinyIndex, Edge edge);
+    bool addNode(const int &nodeIndex, double latitude=0, double longitude=0);
+    bool addBidirectionalEdge(const int &sourceIndex, const int &destinyIndex, double distance);
 
     Node* findNode(int index);
 
     std::vector<Node*> getNodes();
 
-    int clearNodes();
-    bool removeNode(int index);
+    void clearNodes();
 private:
     std::vector<Node*> nodes;
 };
