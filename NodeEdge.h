@@ -9,12 +9,15 @@ class Edge;
 class Node{
 public:
     Node(int index, double latitude, double longitude); //used for real-world graph
+    Node(int index); //used for extra graphs
 
     Edge* addEdge(Node* destinyNode, double distance);
     void removeEdge(Edge* edge);
     void deleteEdge(Edge* edge);
 
     int getIndex();
+    std::vector<Edge*> getOutgoingEdges();
+    std::vector<Edge*> getIncomingEdges();
 
 private:
     int index;
