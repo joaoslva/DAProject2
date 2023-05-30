@@ -25,7 +25,7 @@ void Node::deleteEdge(Edge *edge) {
     Node* destinyNode = edge->getDestinyNode();
     auto itr = destinyNode->incomingEdges.begin();
     while (itr != destinyNode->incomingEdges.end()){
-        if((*itr)->getSourceNode()->getIndex() == this->index){
+        if((*itr)->getSourceNode()->getIndex() == index){
             itr = destinyNode->incomingEdges.erase(itr);
         }
         else{

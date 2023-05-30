@@ -12,7 +12,7 @@
 
 class Graph {
 public:
-    int createRealworldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath);
+    int createRealWorldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath);
     int createExtraGraphs(const std::string& edgesFilePath);
     int createToyGraph(const std::string& filePath);
     bool addNode(const int &nodeIndex, double latitude=0, double longitude=0);

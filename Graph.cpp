@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-int Graph::createRealworldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath) {
+int Graph::createRealWorldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath) {
     //creating nodes
     std::ifstream nodesFile(nodesFilePath);
 
@@ -196,7 +196,7 @@ std::vector<Node*> Graph::getNodes() {
 }
 
 void Graph::clearNodes() {
-    for (auto it = nodes.begin(); it != nodes.end(); it++) {
+    for (auto it = nodes.begin(); it != nodes.end();) {
         auto v = *it;
         v->removeOutgoingEdges();
         for (auto u : nodes) {
