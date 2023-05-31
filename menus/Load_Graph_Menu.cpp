@@ -199,6 +199,73 @@ bool Load_Graph_Menu::extendedGraphs() {
     return true;
 }
 
+bool Load_Graph_Menu::realWorldGraphs() {
+
+    std::cout << "|-----------------------------------------------------------|\n";
+    std::cout << "| WARNING: These graphs are very dense, so their creation   |\n";
+    std::cout << "| might take several seconds (for the 1st graph) or even    |\n";
+    std::cout << "| several minutes (specially for graph 3). Beware of that   |\n";
+    std::cout << "| before proceeding!!!                                      |\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "|-----------------------------------------------------------|\n";
+    std::cout << "|                                                           |\n";
+
+    while (true){
+        std::string choice;
+        std::cout << "| - Real World Graphs -                                     |\n";
+        std::cout << "|                                                           |\n";
+        std::cout << "| 1 - Graph 1 (1000 nodes)                                  |\n";
+        std::cout << "| 2 - Graph 2 (5000 nodes)                                  |\n";
+        std::cout << "| 3 - Graph 3 (10000 nodes)                                 |\n";
+        std::cout << "| r - Return to prev page                                   |\n";
+        std::cout << "| q - Quit the program                                      |\n";
+        std::cout << "|                                                           |\n";
+        std::cout << "| Enter here your choice: ";
+        std::getline(std::cin, choice);
+        std::cout << "|                                                           |\n";
+
+        if(choice == "1") {
+            graph.clearNodes();
+            graph.createRealWorldGraph("../data_sets/Real-world Graphs/graph1/nodes.csv", "../data_sets/Real-world Graphs/graph1/edges.csv");
+            graph_loaded = 3;
+            break;
+        }
+
+
+        else if(choice == "2"){
+            graph.clearNodes();
+            graph.createRealWorldGraph("../data_sets/Real-world Graphs/graph2/nodes.csv", "../data_sets/Real-world Graphs/graph2/edges.csv");
+            graph_loaded = 3;
+            break;
+        }
+
+        else if(choice == "3"){
+            graph.clearNodes();
+            graph.createRealWorldGraph("../data_sets/Real-world Graphs/graph3/nodes.csv", "../data_sets/Real-world Graphs/graph3/edges.csv");
+            graph_loaded = 3;
+            break;
+        }
+
+        else if(choice == "r"){
+            returnMessage();
+            return true;
+        }
+
+        else if(choice == "q"){
+            quitMessage();
+            return false;
+        }
+
+        else{
+            std::cout << "| Not a valid input, please try again                      \n";
+            std::cout << "|                                                          \n";
+        }
+    }
+    graphLoaded();
+    returnMessage();
+    return true;
+}
+
 void Load_Graph_Menu::graphLoaded() {
     std::cout << "|                                                           |\n";
     std::cout << "|-----------------------------------------------------------|\n";
