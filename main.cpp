@@ -4,7 +4,7 @@
 
 int main() {
     Graph graph;
-    graph.createRealWorldGraph("../data_sets/Real-world Graphs/graph3/nodes.csv","../data_sets/Real-world Graphs/graph3/edges.csv");
+    graph.createToyGraph("../data_sets/Toy-Graphs/stadiums.csv");
     std::cout << "Graph size: " << graph.getNodes().size() << std::endl;
     graph.clearNodes();
     std::cout << "Graph size: " << graph.getNodes().size() << std::endl;

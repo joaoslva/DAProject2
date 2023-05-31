@@ -21,7 +21,11 @@ void Menu::start(){
         std::string choice;
         std::cout << "| - MAIN MENU -                                             |\n";
         std::cout << "|                                                           |\n";
-        std::cout << "| 4 - Help                                                  |\n";
+        std::cout << "| 1 - Load Graph                                            |\n";
+        std::cout << "| 2 - Backtracking Algorithm                                |\n";
+        std::cout << "| 3 - Triangular Approximation Heuristic                    |\n";
+        std::cout << "| 4 - Other Heuristics                                      |\n";
+        std::cout << "| 5 - Help                                                  |\n";
         std::cout << "| q - Quit the program                                      |\n";
         std::cout << "|                                                           |\n";
         std::cout << "| Enter here your choice: ";
@@ -30,7 +34,7 @@ void Menu::start(){
 
 
 
-        if(choice == "4")
+        if(choice == "5")
             help();
 
         else if(choice == "q"){
@@ -47,30 +51,17 @@ void Menu::start(){
 }
 
 void Menu::help() {
-    std::string helpChoice;
+    bool running = true;
+    while(running) {
+        std::string helpChoice;
 
-    std::cout << "|------------------------Help Page--------------------------|\n";
-    std::cout << "|                                                           |\n";
-//help page description
-    std::cout << "|                                                           |\n";
-    std::cout << "| Write 'back' to go to the previous page                   |\n";
-    std::cout << "| Enter here: ";
-
-    while (true) {
-        std::getline(std::cin,helpChoice);
+        std::cout << "|------------------------Help Page--------------------------|\n";
         std::cout << "|                                                           |\n";
-
-        if (helpChoice == "back") {
-            std::cout << "|-----------------------------------------------------------|\n";
-            std::cout << "|                                                           |\n";
-            std::cout << "| Select one of the options below to get started.           |\n";
-            std::cout << "|                                                           |\n";
-            break;
-        } else {
-            std::cout << "| Not a valid input, please try again                       |\n";
-            std::cout << "|                                                           |\n";
-            std::cout << "| Enter here: ";
-        }
+        //help page description
+        std::cout << "|                                                           |\n";
+        std::cout << "| Write 'back' to go to the previous page                   |\n";
+        std::cout << "| Enter here: ";
+        running = feedbackLoop();
     }
 }
 
@@ -90,4 +81,24 @@ void Menu::quitMessage() {
     std::cout << "| Thank you for using our program, have a nice day!         |\n";
     std::cout << "|                                                           |\n";
     std::cout << "|-----------------------------------------------------------|\n";
+}
+
+bool Menu::feedbackLoop() {
+    std::string helpChoice;
+    while (true) {
+        std::getline(std::cin, helpChoice);
+        std::cout << "|                                                           |\n";
+
+        if (helpChoice == "back") {
+            returnMessage();
+            return false;
+        } else if (helpChoice == "stay"){
+            return true;
+
+        } else {
+            std::cout << "| Not a valid input, please try again                       |\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| Enter here: ";
+        }
+    }
 }

@@ -19,6 +19,7 @@ public:
     void help();
     void returnMessage();
     void quitMessage();
+    bool feedbackLoop();
 };
 
 
