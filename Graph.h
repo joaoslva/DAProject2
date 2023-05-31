@@ -12,14 +12,11 @@
 
 class Graph {
 public:
-    
-    
     /**
     * @brief Destructor for the Graph class.
     * @note Time complexity: O(N^2), where N is the number of nodes in the graph.
     */
     ~Graph();
-
 
     /**
     * @brief Creates a real-world graph by reading nodes and edges from files.
@@ -29,8 +26,7 @@ public:
     * @note Time complexity: O(N + M), where N is the number of nodes and M is the number of edges.
     */
     int createRealWorldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath);
-    
-    
+
     /**
     * @brief Creates additional graphs by reading edges from a file.
     * @param edgesFilePath The path to the file containing edge information.
@@ -38,8 +34,7 @@ public:
     * @note Time complexity: O(M), where M is the number of edges.
     */
     int createExtraGraphs(const std::string& edgesFilePath);
-    
-    
+
     /**
     * @brief Creates a toy graph by reading data from a file.
     * @param filePath The path to the file containing graph data.
@@ -47,8 +42,7 @@ public:
     * @note Time complexity: O(N + M), where N is the number of nodes and M is the number of edges.
     */
     int createToyGraph(const std::string& filePath);
-    
-    
+
     /**
     * @brief Adds a new node to the graph.
     * @param nodeIndex The index of the node to be added.
@@ -58,8 +52,7 @@ public:
     * @note Time complexity: O(1).
     */
     bool addNode(const int &nodeIndex, double latitude=0, double longitude=0);
-    
-    
+
     /**
     * @brief Adds a bidirectional edge between two nodes in the graph.
     * @param sourceIndex The index of the source node.
@@ -70,7 +63,6 @@ public:
     */
     bool addBidirectionalEdge(const int &sourceIndex, const int &destinyIndex, double distance);
 
-    
     /**
     * @brief Finds a node in the graph by its index.
     * @param index The index of the node to find.
@@ -79,7 +71,6 @@ public:
     */
     Node* findNode(int index);
 
-    
     /**
     * @brief Retrieves all nodes in the graph.
     * @return A vector containing all nodes in the graph.
@@ -87,12 +78,13 @@ public:
     */
     std::vector<Node*> getNodes();
 
-    
     /**
     * @brief Clears all nodes in the graph.
     * @note Time complexity: O(N^2), where N is the number of nodes in the graph.
     */
     void clearNodes();
+
+
 private:
     std::vector<Node*> nodes;
 };

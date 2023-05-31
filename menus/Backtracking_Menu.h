@@ -15,9 +15,11 @@ public:
     * @note If a graph isn´t loaded, a message is displayed to inform the user about the need to load a small graph.
     * @note The time complexity of this function is O(1).
     */
-    void verifyGraphType();
+    bool verifyGraphType();
     
     bool start();
+
+    void algorithmDescription();
 };
 
 
