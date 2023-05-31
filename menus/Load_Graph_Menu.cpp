@@ -38,7 +38,7 @@ bool Load_Graph_Menu::start(){
         }
 
         else if(choice == "3"){
-            running = toyGraphs();
+            running = realWorldGraphs();
             if (!running) return false;
             break;
         }

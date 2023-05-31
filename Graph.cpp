@@ -205,3 +205,7 @@ void Graph::clearNodes() {
         delete v;
     }
 }
+
+Graph::~Graph() {
+    clearNodes();
+}

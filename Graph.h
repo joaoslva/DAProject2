@@ -12,6 +12,7 @@
 
 class Graph {
 public:
+    ~Graph();
     int createRealWorldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath);
     int createExtraGraphs(const std::string& edgesFilePath);
     int createToyGraph(const std::string& filePath);
