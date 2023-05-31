@@ -17,10 +17,44 @@ protected:
 public:
     Menu();
 
+
+    /**
+    * @brief Starts the menu and allows the user to navigate through different options.
+    * @note The time complexity of this function depends on the user input and the operations performed in the menu.
+    */
     void start();
+    
+    
+    /**
+    * @brief Displays the help page for the main menu and allows the user to navigate back to the previous page.
+    * @note If the user enters 'back', the function returns to the previous page.
+    * @note The time complexity of this function depends on the user input and the operations performed in the menu.
+    */
     void helpMainMenu();
+    
+    
+    /**
+    * @brief Displays a return message to the user after completing a task or operation.
+    * @note The message prompts the user to select one of the options to get started.
+    * @note The time complexity of this function is O(1).
+    */
     void returnMessage();
+    
+    
+    /**
+    * @brief Displays a quit message to the user when the program is exiting.
+    * @note The message thanks the user for using the program and wishes them a nice day.
+    * @note The time complexity of this function is O(1).
+    */
     void quitMessage();
+    
+    
+    /**
+    * @brief Performs a feedback loop, allowing the user to provide input until a valid input is received.
+    * @return A boolean value indicating whether to stay in the loop (true) or return to the previous page (false).
+    * @note The loop continues until the user enters 'back' to return to the previous page or provides a valid input.
+    * @note The time complexity of this function depends on the user input and the operations performed in the loop.
+    */
     bool feedbackLoop();
 
 };
