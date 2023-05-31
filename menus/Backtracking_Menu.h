@@ -9,7 +9,9 @@
 #include "Menu.h"
 
 class Backtracking_Menu: public Menu{
-
+public:
+    void verifyGraphType();
+    bool start();
 };
 
 
