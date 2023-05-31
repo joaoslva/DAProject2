@@ -74,6 +74,26 @@ void Node::removeOutgoingEdges() {
     }
 }
 
+void Node::setDist(double dist) {
+    Node::dist = dist;
+}
+
+void Node::setVisited(bool visited) {
+    Node::visited = visited;
+}
+
+void Node::setPath(Edge *path) {
+    Node::path = path;
+}
+
+double Node::getDist() const {
+    return dist;
+}
+
+bool Node::isVisited() const {
+    return visited;
+}
+
 //Edge stuff
 Edge::Edge(Node *sourceNode, Node *destinyNode, double distance) {
     this->sourceNode = sourceNode;

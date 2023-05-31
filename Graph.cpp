@@ -1,3 +1,4 @@
+#include <xmath.h>
 #include "Graph.h"
 
 int Graph::createRealWorldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath) {
@@ -250,4 +251,48 @@ unsigned int tspBT(const unsigned int **dists, unsigned int n, unsigned int path
     // ... so in the first recursive call curIndex starts at 1 rather than 0
     tspBTRec(dists, n, 1, 0, curPath, minDist, path);
     return minDist;
+}
+
+std::vector<Node *> Graph::prim() {
+    if (nodes.empty()) {
+        return this->nodes;
+    }
+
+    // Reset auxiliary info
+    for(auto v : nodes) {
+        v->setDist(INF);
+        v->setPath(nullptr);
+        v->setVisited(false);
+    }
+
+    // start with an arbitrary vertex
+    Node* s = nodes.front();
+    s->setDist(0);
+
+    // initialize priority queue
+    MutablePriorityQueue<Node> q;
+    q.insert(s);
+    // process vertices in the priority queue
+    while( ! q.empty() ) {
+        auto v = q.extractMin();
+        v->setVisited(true);
+        for(auto &e : v->getAdj()) {
+            Node* w = e->getDest();
+            if (!w->isVisited()) {
+                auto oldDist = w->getDist();
+                if(e->getWeight() < oldDist) {
+                    w->setDist(e->getWeight());
+                    w->setPath(e);
+                    if (oldDist == INF) {
+                        q.insert(w);
+                    }
+                    else {
+                        q.decreaseKey(w);
+                    }
+                }
+            }
+        }
+    }
+
+    return this->nodes;
 }

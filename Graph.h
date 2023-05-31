@@ -93,6 +93,9 @@ public:
     * @note Time complexity: O(N^2), where N is the number of nodes in the graph.
     */
     void clearNodes();
+
+    std::vector<Node *> prim();
+
 private:
     std::vector<Node*> nodes;
 };
