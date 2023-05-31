@@ -70,7 +70,6 @@ int Graph::createExtraGraphs(const std::string &edgesFilePath) {
     std::size_t end = fileName.find_first_not_of("0123456789", start);
 
     std::string index = fileName.substr(start, end - start);
-    std::cout << "Index: " <<index << std::endl;
 
     for(int i = 0; i < std::stoi(index); i++){
         this->nodes.push_back(new Node(i));

@@ -9,8 +9,13 @@
 #include "Menu.h"
 
 class Load_Graph_Menu: public Menu{
-    bool start();
-    void helpLoadMenu();
+    public:
+        bool start();
+        void helpLoadMenu();
+        bool toyGraphs();
+        bool extendedGraphs();
+        bool realWorldGraphs();
+        void graphLoaded();
 
 };
 

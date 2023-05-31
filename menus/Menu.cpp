@@ -3,6 +3,7 @@
 //
 
 #include "Menu.h"
+#include "Load_Graph_Menu.h"
 
 Menu::Menu(): graph(), graph_loaded(0) {}
 
@@ -32,16 +33,19 @@ void Menu::start(){
         std::getline(std::cin, choice);
         std::cout << "|                                                           |\n";
 
+        if (choice == "1"){
+            Load_Graph_Menu loadGraphMenu = Load_Graph_Menu();
+            running = loadGraphMenu.start();
+        }
 
 
-        if(choice == "5")
+        else if(choice == "5")
             helpMainMenu();
 
         else if(choice == "q"){
             quitMessage();
             running = false;
         }
-
         else{
             std::cout << "| Not a valid input, please try again                      \n";
             std::cout << "|                                                          \n";
