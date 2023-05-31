@@ -13,13 +13,16 @@
 class Menu {
 protected:
     Graph graph;
+    int graph_loaded; //0 - Not set; 1 - Toy Graph; 2 - Extra Connected; 3 - Real World
 public:
-    explicit Menu(const Graph &graph);
+    Menu();
+
     void start();
-    void help();
+    void helpMainMenu();
     void returnMessage();
     void quitMessage();
     bool feedbackLoop();
+
 };
 
 

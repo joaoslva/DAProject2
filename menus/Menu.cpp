@@ -4,15 +4,15 @@
 
 #include "Menu.h"
 
-Menu::Menu(const Graph &graph): graph(graph) {}
+Menu::Menu(): graph(), graph_loaded(0) {}
 
 void Menu::start(){
     bool running = true;
-    //Create a dope print saying "Train Management App" with characters
+    //TODO Create a dope print saying "Train Management App" with characters
 
     std::cout << "\n|-----------------------------------------------------------|\n";
     std::cout << "|                                                           |\n";
-    //description of the project
+    //TODO description of the project
     std::cout << "|                                                           |\n";
     std::cout << "|-----------------------------------------------------------|\n";
     std::cout << "|                                                           |\n";
@@ -35,7 +35,7 @@ void Menu::start(){
 
 
         if(choice == "5")
-            help();
+            helpMainMenu();
 
         else if(choice == "q"){
             quitMessage();
@@ -50,14 +50,14 @@ void Menu::start(){
 
 }
 
-void Menu::help() {
+void Menu::helpMainMenu() {
     bool running = true;
     while(running) {
         std::string helpChoice;
 
         std::cout << "|------------------------Help Page--------------------------|\n";
         std::cout << "|                                                           |\n";
-        //help page description
+        //TODO help page description
         std::cout << "|                                                           |\n";
         std::cout << "| Write 'back' to go to the previous page                   |\n";
         std::cout << "| Enter here: ";

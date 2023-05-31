@@ -6,7 +6,11 @@
 #define PROJETO_2_LOAD_GRAPH_MENU_H
 
 
-class Load_Graph_Menu {
+#include "Menu.h"
+
+class Load_Graph_Menu: public Menu{
+    bool start();
+    void helpLoadMenu();
 
 };
 

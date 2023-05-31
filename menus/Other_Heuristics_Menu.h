@@ -6,7 +6,9 @@
 #define PROJETO_2_OTHER_HEURISTICS_MENU_H
 
 
-class Other_Heuristics_Menu {
+#include "Menu.h"
+
+class Other_Heuristics_Menu: public Menu{
 
 };
 

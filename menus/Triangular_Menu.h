@@ -6,7 +6,9 @@
 #define PROJETO_2_TRIANGULAR_MENU_H
 
 
-class Triangular_Menu {
+#include "Menu.h"
+
+class Triangular_Menu: public Menu{
 
 };
 

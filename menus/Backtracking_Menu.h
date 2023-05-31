@@ -6,7 +6,9 @@
 #define PROJETO_2_BACKTRACKING_MENU_H
 
 
-class Backtracking_Menu {
+#include "Menu.h"
+
+class Backtracking_Menu: public Menu{
 
 };
 
