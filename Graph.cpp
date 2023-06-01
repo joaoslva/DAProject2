@@ -197,6 +197,9 @@ std::vector<Node*> Graph::getNodes() {
 }
 
 void Graph::clearNodes() {
+    for (auto & node : nodes){
+        node->setPath(nullptr);
+    }
     for (auto it = nodes.begin(); it != nodes.end();) {
         auto v = *it;
         v->removeOutgoingEdges();

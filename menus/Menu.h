@@ -104,4 +104,9 @@ public:
 };
 
 
+#include "Backtracking_Menu.h"
+#include "Triangular_Menu.h"
+#include "Other_Heuristics_Menu.h"
+
+
 #endif //PROJETO_2_MENU_H
