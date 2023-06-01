@@ -4,6 +4,8 @@
 
 #include "Backtracking_Menu.h"
 
+Backtracking_Menu::Backtracking_Menu(const Graph &graph, const int &graph_loaded): Menu(graph,graph_loaded) {}
+
 void Backtracking_Menu::verifyGraphType() {
     if (graph_loaded == 0){
         std::cout << "|                                                           |\n";

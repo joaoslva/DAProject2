@@ -1,4 +1,6 @@
+#include <xmath.h>
 #include "Graph.h"
+#include "MutablePriorityQueue.h"
 
 int Graph::createRealWorldGraph(const std::string& nodesFilePath, const std::string& edgesFilePath) {
     //creating nodes
@@ -250,4 +252,87 @@ unsigned int tspBT(const unsigned int **dists, unsigned int n, unsigned int path
     // ... so in the first recursive call curIndex starts at 1 rather than 0
     tspBTRec(dists, n, 1, 0, curPath, minDist, path);
     return minDist;
+}
+
+std::vector<Node *> Graph::prim() {
+    std::vector<Node *> preOrder; // Stores the pre-order traversal
+    if (nodes.empty()) {
+        return this->nodes;
+    }
+
+    // Reset auxiliary info
+    for(auto v : nodes) {
+        v->setDist(INFINITY);
+        v->setPath(nullptr);
+        v->setVisited(false);
+    }
+
+    // start with an arbitrary vertex
+    Node* s = nodes.front();
+    s->setDist(0);
+
+    // initialize priority queue
+    MutablePriorityQueue<Node> q;
+    q.insert(s);
+    // process vertices in the priority queue
+    while( ! q.empty() ) {
+        auto v = q.extractMin();
+        v->setVisited(true);
+        preOrder.push_back(v); // Add the visited vertex to the pre-order traversal
+        for(auto &e : v->getOutgoingEdges()) {
+            Node* w = e->getDestinyNode();
+            if (!w->isVisited()) {
+                auto oldDist = w->getDist();
+                if(e->getDistance() < oldDist) {
+                    w->setDist(e->getDistance());
+                    w->setPath(e);
+                    if (oldDist == INFINITY) {
+                        q.insert(w);
+                    }
+                    else {
+                        q.decreaseKey(w);
+                    }
+                }
+            }
+        }
+    }
+
+    return preOrder;
+}
+
+double Graph::triangularApproximationHeuristic(){
+    std::cout << "Triangular Approximation Heuristic:\n";
+    double approxDist = 0.0;
+    std::vector<Node *> primResult = prim();
+    int vectorSize = primResult.size();
+    for (int i=0; i<vectorSize; i++){
+        Node* orig = primResult[i];
+        Node* dest = primResult[(i+1)%vectorSize];
+        approxDist += haversine(orig->getLatitude(), orig->getLongitude(), dest->getLatitude(), dest->getLongitude());
+        std::cout << orig->getIndex() << "->";
+    }
+    std::cout << primResult[0]->getIndex() << '\n';
+    return approxDist;
+}
+
+double Graph::toRadians(double degrees) {
+    return degrees * M_PI / 180.0;
+}
+
+double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
+    double kEarthRadius = 6371000.0;
+    // Convert latitude and longitude to radians
+    double phi1 = toRadians(lat1);
+    double phi2 = toRadians(lat2);
+    double deltaPhi = toRadians(lat2 - lat1);
+    double deltaLambda = toRadians(lon2 - lon1);
+
+    // Haversine formula
+    double a = std::sin(deltaPhi / 2) * std::sin(deltaPhi / 2) +
+               std::cos(phi1) * std::cos(phi2) *
+               std::sin(deltaLambda / 2) * std::sin(deltaLambda / 2);
+    double c = 2 * std::atan2(std::sqrt(a), std::sqrt(1 - a));
+    double distance = kEarthRadius * c;
+
+    return distance;
 }

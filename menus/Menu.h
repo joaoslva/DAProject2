@@ -15,7 +15,7 @@ protected:
     Graph graph;
     int graph_loaded; //0 - Not set; 1 - Toy Graph; 2 - Extra Connected; 3 - Real World
 public:
-    Menu();
+    explicit Menu(const Graph &graph, const int &graph_loaded);
 
 
     /**
@@ -56,6 +56,51 @@ public:
     * @note The time complexity of this function depends on the user input and the operations performed in the loop.
     */
     bool feedbackLoop();
+
+    /**
+        * @brief Starts the Load Graph menu and handles user input.
+        * @return Returns true if the program should continue running, false otherwise.
+        * @note The time complexity of this function depends on the user input and the operations performed in the menu.
+        */
+    bool startLoadMenu();
+
+
+    /**
+    * @brief Displays the help menu for the Load Graph menu and handles user input.
+    * @note The time complexity of this function depends on the user input and the operations performed in the menu.
+    */
+    void helpLoadMenu();
+
+
+    /**
+    * @brief Displays the Toy Graphs menu, handles user input, and loads the chosen graph.
+    * @return Returns true if the program should continue running, false otherwise.
+    * @note The time complexity of this function depends on the user input and the operations performed in the menu.
+    */
+    bool toyGraphs();
+
+
+    /**
+    * @brief Displays the Extended Graphs menu, handles user input, and loads the chosen graph.
+    * @return Returns true if the program should continue running, false otherwise.
+    * @note The time complexity of this function depends on the user input and the operations performed in the menu.
+    */
+    bool extendedGraphs();
+
+
+    /**
+    * @brief Displays the Real World Graphs menu, handles user input, and loads the chosen graph.
+    * @return Returns true if the program should continue running, false otherwise.
+    * @note The time complexity of this function depends on the user input and the operations performed in the menu.
+    */
+    bool realWorldGraphs();
+
+
+    /**
+    * @brief Displays a message indicating that the chosen graph was loaded successfully.
+    * @note The time complexity of this function is O(1).
+    */
+    void graphLoaded();
 
 };
 

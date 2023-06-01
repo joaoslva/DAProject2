@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <cmath>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -93,6 +94,15 @@ public:
     * @note Time complexity: O(N^2), where N is the number of nodes in the graph.
     */
     void clearNodes();
+
+    std::vector<Node *> prim();
+
+    double triangularApproximationHeuristic();
+
+    double static haversine(double lat1, double lon1, double lat2, double lon2);
+
+    double static toRadians(double degrees);
+
 private:
     std::vector<Node*> nodes;
 };
