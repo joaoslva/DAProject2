@@ -3,7 +3,7 @@
 //
 
 #include "Menu.h"
-#include "Load_Graph_Menu.h"
+
 
 Menu::Menu(): graph(), graph_loaded(0) {}
 
@@ -38,6 +38,18 @@ void Menu::start(){
             running = loadGraphMenu.start();
         }
 
+        else if(choice == "2"){
+            Backtracking_Menu backtrackingMenu = Backtracking_Menu();
+            running = backtrackingMenu.start();
+        }
+
+        else if(choice == "3"){
+            printf("Under construction\n");
+        }
+
+        else if(choice == "4"){
+            printf("Under construction\n");
+        }
 
         else if(choice == "5")
             helpMainMenu();

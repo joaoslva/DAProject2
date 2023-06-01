@@ -8,6 +8,10 @@
 #include <unistd.h>
 #include <iomanip>
 #include "../Graph.h"
+#include "Load_Graph_Menu.h"
+#include "Backtracking_Menu.h"
+#include "Triangular_Menu.h"
+#include "Other_Heuristics_Menu.h"
 
 
 class Menu {

@@ -19,7 +19,9 @@ public:
     
     bool start();
 
-    void algorithmDescription();
+    static void algorithmDescription();
+
+
 };
 
 
