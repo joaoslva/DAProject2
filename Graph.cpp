@@ -262,7 +262,7 @@ std::vector<Node *> Graph::prim() {
 
     // Reset auxiliary info
     for(auto v : nodes) {
-        v->setDist(INF);
+        v->setDist(INFINITY);
         v->setPath(nullptr);
         v->setVisited(false);
     }
@@ -286,7 +286,7 @@ std::vector<Node *> Graph::prim() {
                 if(e->getDistance() < oldDist) {
                     w->setDist(e->getDistance());
                     w->setPath(e);
-                    if (oldDist == INF) {
+                    if (oldDist == INFINITY) {
                         q.insert(w);
                     }
                     else {
@@ -311,7 +311,7 @@ double Graph::triangularApproximationHeuristic(){
         approxDist += haversine(orig->getLatitude(), orig->getLongitude(), dest->getLatitude(), dest->getLongitude());
         std::cout << orig->getIndex() << "->";
     }
-    std::cout << primResult[0] << '\n';
+    std::cout << primResult[0]->getIndex() << '\n';
     return approxDist;
 }
 
