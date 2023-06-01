@@ -3,8 +3,8 @@
 //
 
 #include "Menu.h"
-#include "Menu.h"
-#include "Triangular_Menu.h"
+
+
 
 Menu::Menu(const Graph &graph, const int &graph_loaded): graph(graph), graph_loaded(graph_loaded) {}
 
@@ -38,9 +38,18 @@ void Menu::start(){
             running = startLoadMenu();
         }
 
+        else if(choice == "2"){
+            Backtracking_Menu backtrackingMenu = Backtracking_Menu(graph, graph_loaded);
+            running = backtrackingMenu.start();
+        }
+
         else if (choice == "3"){
             Triangular_Menu triangularMenu = Triangular_Menu(graph,graph_loaded);
             running = triangularMenu.start();
+        }
+
+        else if(choice == "4") {
+            printf("Under construction\n");
         }
 
         else if(choice == "5")
