@@ -4,7 +4,10 @@
 
 #include "Backtracking_Menu.h"
 
+Backtracking_Menu::Backtracking_Menu(const Graph &graph, const int &graph_loaded): Menu(graph,graph_loaded) {}
+
 bool Backtracking_Menu::verifyGraphType() {
+
     if (graph_loaded == 0){
         std::cout << "|                                                           |\n";
         std::cout << "| You haven't loaded any graph yet. To use Backtracking     |\n";

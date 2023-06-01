@@ -9,7 +9,8 @@ int main() {
     graph.clearNodes();
     std::cout << "Graph size: " << graph.getNodes().size() << std::endl;
     std::cout << "Hello, World!" << std::endl;
-    Menu menu = Menu();
+    Graph g;
+    Menu menu = Menu(g,0);
     menu.start();
     return 0;
 }

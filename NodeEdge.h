@@ -83,11 +83,32 @@ public:
     */
     std::vector<Edge*> getIncomingEdges();
 
+    void setDist(double dist);
+    void setVisited(bool visited);
+    void setPath(Edge *path);
+
+    double getDist() const;
+
+    bool isVisited() const;
+
+    double getLatitude() const;
+
+    double getLongitude() const;
+
+    bool operator<(Node & vertex) const; // // required by MutablePriorityQueue
+
+    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+
+
 private:
     int index;
     std::string label; //only used in the tourism toy graph
     double latitude; //only used for real-world graphs
     double longitude; //only used for real-world graphs
+
+    double dist = 0;
+    bool visited = false;
+    Edge *path = nullptr;
 
     std::vector<Edge*> outgoingEdges;
     std::vector<Edge*> incomingEdges;

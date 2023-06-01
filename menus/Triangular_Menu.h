@@ -8,7 +8,11 @@
 
 #include "Menu.h"
 
-class Triangular_Menu: public Menu{
+class Triangular_Menu: public Menu {
+    public:
+    bool verifyGraphType();
+    bool start();
+    explicit Triangular_Menu(const Graph &graph, const int &graph_loaded);
 
 };
 

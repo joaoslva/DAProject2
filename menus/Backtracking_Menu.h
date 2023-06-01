@@ -19,7 +19,11 @@ public:
     
     bool start();
 
+
     static void algorithmDescription();
+
+
+    explicit Backtracking_Menu(const Graph &graph, const int &graph_loaded);
 
 };
 

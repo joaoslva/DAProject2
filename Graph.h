@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <cmath>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -84,6 +85,16 @@ public:
     */
     void clearNodes();
 
+<<<<<<< HEAD
+=======
+    std::vector<Node *> prim();
+
+    double triangularApproximationHeuristic();
+
+    double static haversine(double lat1, double lon1, double lat2, double lon2);
+
+    double static toRadians(double degrees);
+>>>>>>> master
 
 private:
     std::vector<Node*> nodes;
