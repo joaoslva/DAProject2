@@ -8,9 +8,6 @@
 #include <unistd.h>
 #include <iomanip>
 #include "../Graph.h"
-#include "Backtracking_Menu.h"
-#include "Triangular_Menu.h"
-#include "Other_Heuristics_Menu.h"
 
 
 class Menu {
@@ -106,6 +103,11 @@ public:
     void graphLoaded();
 
 };
+
+
+#include "Backtracking_Menu.h"
+#include "Triangular_Menu.h"
+#include "Other_Heuristics_Menu.h"
 
 
 #endif //PROJETO_2_MENU_H
