@@ -56,6 +56,8 @@ class Load_Graph_Menu: public Menu{
         */
         void graphLoaded();
 
+        explicit Load_Graph_Menu(const Graph &graph, const int &graph_loaded);
+
 };
 
 

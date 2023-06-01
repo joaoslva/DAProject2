@@ -18,6 +18,8 @@ public:
     void verifyGraphType();
     
     bool start();
+
+    explicit Backtracking_Menu(const Graph &graph, const int &graph_loaded);
 };
 
 

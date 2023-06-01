@@ -4,8 +4,9 @@
 
 #include "Menu.h"
 #include "Load_Graph_Menu.h"
+#include "Triangular_Menu.h"
 
-Menu::Menu(): graph(), graph_loaded(0) {}
+Menu::Menu(const Graph &graph, const int &graph_loaded): graph(graph), graph_loaded(graph_loaded) {}
 
 void Menu::start(){
     bool running = true;
@@ -34,10 +35,14 @@ void Menu::start(){
         std::cout << "|                                                           |\n";
 
         if (choice == "1"){
-            Load_Graph_Menu loadGraphMenu = Load_Graph_Menu();
+            Load_Graph_Menu loadGraphMenu = Load_Graph_Menu(graph, graph_loaded);
             running = loadGraphMenu.start();
         }
 
+        else if (choice == "3"){
+            double dist = graph.triangularApproximationHeuristic();
+            std::cout << "The approximate distance is " << dist << " meters\n";
+        }
 
         else if(choice == "5")
             helpMainMenu();

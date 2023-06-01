@@ -4,6 +4,8 @@
 
 #include "Load_Graph_Menu.h"
 
+Load_Graph_Menu::Load_Graph_Menu(const Graph &graph, const int &graph_loaded) : Menu(graph, graph_loaded) {}
+
 bool Load_Graph_Menu::start(){
     bool running;
 
@@ -175,7 +177,7 @@ bool Load_Graph_Menu::extendedGraphs() {
         if ((choiceNum >= 100 && choiceNum <= 900 && choiceNum % 100 == 0) || choiceNum == 25 || choiceNum == 50) {
             graph.clearNodes();
             graph.createExtraGraphs("../data_sets/Extra_Fully_Connected_Graphs/edges_" + choice + ".csv");
-            graph_loaded = 2;
+            Menu::graph_loaded = 2;
             break;
         }
 
@@ -227,7 +229,7 @@ bool Load_Graph_Menu::realWorldGraphs() {
         if(choice == "1") {
             graph.clearNodes();
             graph.createRealWorldGraph("../data_sets/Real-world Graphs/graph1/nodes.csv", "../data_sets/Real-world Graphs/graph1/edges.csv");
-            graph_loaded = 3;
+            Menu::graph_loaded = 3;
             break;
         }
 
@@ -235,14 +237,14 @@ bool Load_Graph_Menu::realWorldGraphs() {
         else if(choice == "2"){
             graph.clearNodes();
             graph.createRealWorldGraph("../data_sets/Real-world Graphs/graph2/nodes.csv", "../data_sets/Real-world Graphs/graph2/edges.csv");
-            graph_loaded = 3;
+            Menu::graph_loaded = 3;
             break;
         }
 
         else if(choice == "3"){
             graph.clearNodes();
             graph.createRealWorldGraph("../data_sets/Real-world Graphs/graph3/nodes.csv", "../data_sets/Real-world Graphs/graph3/edges.csv");
-            graph_loaded = 3;
+            Menu::graph_loaded = 3;
             break;
         }
 

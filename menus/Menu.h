@@ -15,7 +15,7 @@ protected:
     Graph graph;
     int graph_loaded; //0 - Not set; 1 - Toy Graph; 2 - Extra Connected; 3 - Real World
 public:
-    Menu();
+    explicit Menu(const Graph &graph, const int &graph_loaded);
 
 
     /**

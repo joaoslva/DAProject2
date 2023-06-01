@@ -301,6 +301,7 @@ std::vector<Node *> Graph::prim() {
 }
 
 double Graph::triangularApproximationHeuristic(){
+    std::cout << "Triangular Approximation Heuristic:\n";
     double approxDist = 0.0;
     std::vector<Node *> primResult = prim();
     int vectorSize = primResult.size();
@@ -308,7 +309,9 @@ double Graph::triangularApproximationHeuristic(){
         Node* orig = primResult[i];
         Node* dest = primResult[(i+1)%vectorSize];
         approxDist += haversine(orig->getLatitude(), orig->getLongitude(), dest->getLatitude(), dest->getLongitude());
+        std::cout << orig->getIndex() << "->";
     }
+    std::cout << primResult[0] << '\n';
     return approxDist;
 }
 
