@@ -3,7 +3,9 @@
 //
 
 #include "Menu.h"
-
+#include "Backtracking_Menu.h"
+#include "Triangular_Menu.h"
+#include "Other_Heuristics_Menu.h"
 
 
 Menu::Menu(const Graph &graph, const int &graph_loaded): graph(graph), graph_loaded(graph_loaded) {}

@@ -9,7 +9,6 @@
 #include <iomanip>
 #include "../Graph.h"
 
-
 class Menu {
 protected:
     Graph graph;

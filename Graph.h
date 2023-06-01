@@ -93,6 +93,12 @@ public:
 
     double static toRadians(double degrees);
 
+    void backtrackingRec(double **dists, unsigned int n, unsigned int curIndex, double curDist, unsigned int curPath[], double &minDist, unsigned int path[]);
+
+    double TSPBacktracking(double **dists, unsigned int n, unsigned int path[]);
+
+    unsigned long getNumNodes() const;
+
 private:
     std::vector<Node*> nodes;
 };

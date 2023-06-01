@@ -215,21 +215,26 @@ Graph::~Graph() {
     clearNodes();
 }
 
-void tspBTRec(const unsigned int **dists, unsigned int n, unsigned int curIndex, unsigned int curDist, unsigned int curPath[], unsigned int &minDist, unsigned int path[]) {
+unsigned long Graph::getNumNodes() const {
+    return this->nodes.size();
+}
+
+void Graph::backtrackingRec(double **dists, unsigned int n, unsigned int curIndex, double curDist, unsigned int curPath[], double &minDist, unsigned int path[]) {
     if(curIndex == n) {
-        // add the distance back to the initial node
         curDist += dists[curPath[n - 1]][curPath[0]];
         if(curDist < minDist) {
             minDist = curDist;
-            // Copy the current state to the array storing the best state found so far
+            // Copy the current path to the path array
             for(unsigned int i = 0; i < n; i++) {
                 path[i] = curPath[i];
             }
         }
         return;
     }
-    // Try to move to the i-th vertex if the total distance does not exceed the best distance found and the vertex is not yet visited in curPath
-    for(unsigned int i = 1; i < n; i++) { // i starts at 1 and not 0 since it is assumed that node 0 is the initial node so it will not be in the middle of the path
+
+    // Try to add all possible vertices to the current path
+    for(unsigned int i = 1; i < n; i++) { // The 0-th vertex is the initial vertex, so we skip it
+        if(dists[curPath[curIndex - 1]][i] == -1) continue; // If there is no edge between the current vertex and the i-th vertex, skip it
         if(curDist + dists[curPath[curIndex - 1]][i] < minDist) {
             bool isNewVertex = true;
             for(unsigned int j = 1; j < curIndex; j++) {
@@ -240,20 +245,22 @@ void tspBTRec(const unsigned int **dists, unsigned int n, unsigned int curIndex,
             }
             if(isNewVertex) {
                 curPath[curIndex] = i;
-                tspBTRec(dists,n,curIndex+1,curDist + dists[curPath[curIndex - 1]][curPath[curIndex]],curPath,minDist,path);
+                backtrackingRec(dists, n, curIndex + 1, curDist + dists[curPath[curIndex - 1]][curPath[curIndex]],
+                                curPath, minDist, path);
             }
         }
     }
 }
 
-unsigned int tspBT(const unsigned int **dists, unsigned int n, unsigned int path[]) {
-    unsigned int curPath[10000]; // static memory allocation is faster :)
-    unsigned int minDist = std::numeric_limits<unsigned int>::max();
+double Graph::TSPBacktracking(double **dists, unsigned int n, unsigned int path[]) {
+    unsigned int curPath[n];
+    double minDist = std::numeric_limits<double>::max();
 
-    // Assumes path starts at node 0 ...
+    // Initialize the current path with node 0, by default
     curPath[0] = 0;
-    // ... so in the first recursive call curIndex starts at 1 rather than 0
-    tspBTRec(dists, n, 1, 0, curPath, minDist, path);
+
+    // Call the recursive function starting with index 1 since node 0 is already in the path
+    backtrackingRec(dists, n, 1, 0, curPath, minDist, path);
     return minDist;
 }
 

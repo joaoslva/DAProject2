@@ -7,14 +7,12 @@
 Backtracking_Menu::Backtracking_Menu(const Graph &graph, const int &graph_loaded): Menu(graph,graph_loaded) {}
 
 bool Backtracking_Menu::verifyGraphType() {
-
     if (graph_loaded == 0){
         std::cout << "|                                                           |\n";
         std::cout << "| You haven't loaded any graph yet. To use Backtracking     |\n";
         std::cout << "| use a small graph (like the Toy Graphs or the Extra ones),|\n";
         std::cout << "| due to this algorithm's high computational complexity!    |\n";
         std::cout << "|                                                           |\n";
-        std::cout << "|-----------------------------------------------------------|\n";
         return false;
     }
 
@@ -26,7 +24,6 @@ bool Backtracking_Menu::verifyGraphType() {
         std::cout << "| or the Extra ones), due to this algorithm's high          |\n";
         std::cout << "| computational complexity!                                 |\n";
         std::cout << "|                                                           |\n";
-        std::cout << "|-----------------------------------------------------------|\n";
         return false;
     }
     return true;
@@ -53,7 +50,7 @@ bool Backtracking_Menu::start() {
         std::cout << "|                                                           |\n";
 
         if(backtrackingChoice == "1"){
-
+            backtrackingAlgorithm();
         }
 
         else if(backtrackingChoice == "2"){
@@ -88,4 +85,93 @@ void Backtracking_Menu::algorithmDescription() {
     std::cout << "| best solution.                                            |\n";
     std::cout << "|                                                           |\n";
     std::cout << "|-----------------------------------------------------------|\n";
+}
+
+void Backtracking_Menu::backtrackingAlgorithm() {
+    const unsigned int nodeNumber = graph.getNumNodes();
+    double dists[nodeNumber][nodeNumber];
+    std::vector<Node*> nodes = graph.getNodes();
+
+    //Initialize the dists matrix
+    for(unsigned int i = 0; i < nodeNumber; i++){
+        for(unsigned int j = 0; j < nodeNumber; j++){
+            dists[i][j] = -1;
+        }
+    }
+
+    //Fill the dists matrix
+    for(unsigned int i = 0; i < nodeNumber; i++){
+        dists[i][i] = 0;
+        for(Edge* edge: nodes[i]->getOutgoingEdges()){
+            dists[i][edge->getDestinyNode()->getIndex()] = edge->getDistance();
+        }
+    }
+
+    //Create a pointer with the matrix values
+    auto **matrixPointer = new double*[nodeNumber];
+    for(unsigned int i = 0; i < nodeNumber; i++){
+        matrixPointer[i] = dists[i];
+    }
+
+    unsigned int path[nodeNumber];
+
+    double minDistance = graph.TSPBacktracking(matrixPointer, nodeNumber, path);
+
+    std::cout << "|-----------------------------------------------------------|\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "| The shortest path found has a distance of " << minDistance;
+
+    for(int i = 0; i < 59 - 43 - std::to_string(minDistance).length(); i++){
+        std::cout << " ";
+    }
+    std::cout << "|\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "| Do you wish to see the path?                              |\n";
+    std::cout << "| Enter here your choice (yes/no): ";
+    std::string choice;
+    while (true){
+        std::getline(std::cin, choice);
+        if(choice == "yes"){
+            int charCounter = 1;
+            std::cout << "|                                                           |\n";
+            std::cout << "| The path is:                                              |\n";
+            std::cout << "| ";
+            for(unsigned int i = 0; i < nodeNumber; i++){
+                charCounter += (4 + std::to_string(path[i]).length());
+                if (charCounter > 58){
+                    for(int j = 0; j < 59 - charCounter + std::to_string(path[i]).length() + 4; j++){
+                        std::cout << " ";
+                    }
+                    std::cout << "|\n";
+                    std::cout << "| ";
+                    charCounter = 1;
+                }
+                if(i == nodeNumber - 1){
+                    std::cout << path[i];
+                    for(int j = 0; j < 59 - charCounter + std::to_string(path[i]).length(); j++){
+                        std::cout << " ";
+                    }
+                }
+                else{
+                    std::cout << path[i] << " -> ";
+                }
+            }
+            std::cout << "|\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "|-----------------------------------------------------------|\n";
+            break;
+        }
+        else if(choice == "no"){
+            std::cout << "|                                                           |\n";
+            std::cout << "|-----------------------------------------------------------|\n";
+            break;
+        }
+        else{
+            std::cout << "|                                                           |\n";
+            std::cout << "| Not a valid input, please try again                       |\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| Do you wish to see the path?                              |\n";
+            std::cout << "| Enter here your choice (yes/no): ";
+        }
+    }
 }
