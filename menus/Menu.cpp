@@ -46,8 +46,8 @@ void Menu::start(){
         }
 
         else if (choice == "3"){
-            Triangular_Menu triangularMenu = Triangular_Menu(graph,graph_loaded);
-            running = triangularMenu.start();
+            double dist = graph.triangularApproximationHeuristic();
+            std::cout << "The approximate distance is " << dist << " meters\n";
         }
 
         else if(choice == "4") {

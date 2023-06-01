@@ -265,7 +265,6 @@ double Graph::TSPBacktracking(double **dists, unsigned int n, unsigned int path[
 }
 
 std::vector<Node *> Graph::prim() {
-    std::vector<Node *> preOrder; // Stores the pre-order traversal
     if (nodes.empty()) {
         return this->nodes;
     }
@@ -288,7 +287,6 @@ std::vector<Node *> Graph::prim() {
     while( ! q.empty() ) {
         auto v = q.extractMin();
         v->setVisited(true);
-        preOrder.push_back(v); // Add the visited vertex to the pre-order traversal
         for(auto &e : v->getOutgoingEdges()) {
             Node* w = e->getDestinyNode();
             if (!w->isVisited()) {
@@ -307,18 +305,30 @@ std::vector<Node *> Graph::prim() {
         }
     }
 
-    return preOrder;
+    return this->nodes;
 }
 
 double Graph::triangularApproximationHeuristic(){
     std::cout << "Triangular Approximation Heuristic:\n";
     double approxDist = 0.0;
     std::vector<Node *> primResult = prim();
-    int vectorSize = primResult.size();
+    std::vector<int> res;
+    pathDFS(0,&res);
+    int vectorSize = res.size();
     for (int i=0; i<vectorSize; i++){
-        Node* orig = primResult[i];
-        Node* dest = primResult[(i+1)%vectorSize];
-        approxDist += haversine(orig->getLatitude(), orig->getLongitude(), dest->getLatitude(), dest->getLongitude());
+        bool flag = false;
+        Node* orig = primResult[res[i]];
+        Node* dest = primResult[res[(i+1)%vectorSize]];
+        for(auto e:orig->getOutgoingEdges()){
+            if (e->getDestinyNode()->getIndex() == dest->getIndex()){
+                approxDist += e->getDistance();
+                flag = true;
+                break;
+            }
+        }
+        if(!flag)
+            approxDist += haversine(orig->getLatitude(), orig->getLongitude(), dest->getLatitude(), dest->getLongitude());
+
         std::cout << orig->getIndex() << "->";
     }
     std::cout << primResult[0]->getIndex() << '\n';
@@ -345,4 +355,18 @@ double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
     double distance = kEarthRadius * c;
 
     return distance;
+}
+
+void Graph::pathDFS(const int & source, std::vector<int> *res) {
+    Node* v = findNode(source);
+    res->push_back(v->getIndex());
+    for (auto e: v->getOutgoingEdges()){
+        Node* w = e->getDestinyNode();
+        Edge* path = w->getPath();
+        if(path != nullptr){
+            if(path->getSourceNode()->getIndex() == v->getIndex()){
+                pathDFS(w->getIndex(),res);
+            }
+        }
+    }
 }

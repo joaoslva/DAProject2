@@ -99,6 +99,8 @@ public:
 
     unsigned long getNumNodes() const;
 
+    void pathDFS(const int & source, std::vector<int> *res);
+
 private:
     std::vector<Node*> nodes;
 };

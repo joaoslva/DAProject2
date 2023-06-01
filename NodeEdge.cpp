@@ -128,3 +128,7 @@ double Node::getLatitude() const {
 double Node::getLongitude() const {
     return longitude;
 }
+
+Edge *Node::getPath() const {
+    return path;
+}

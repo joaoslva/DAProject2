@@ -95,6 +95,8 @@ public:
 
     double getLongitude() const;
 
+    Edge *getPath() const;
+
     bool operator<(Node & vertex) const; // // required by MutablePriorityQueue
 
     int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
