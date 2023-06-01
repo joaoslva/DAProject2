@@ -91,6 +91,14 @@ public:
 
     bool isVisited() const;
 
+    double getLatitude() const;
+
+    double getLongitude() const;
+
+    bool operator<(Node & vertex) const; // // required by MutablePriorityQueue
+
+    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+
 
 private:
     int index;
@@ -98,7 +106,6 @@ private:
     double latitude; //only used for real-world graphs
     double longitude; //only used for real-world graphs
 
-    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
     double dist = 0;
     bool visited = false;
     Edge *path = nullptr;

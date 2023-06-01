@@ -116,3 +116,15 @@ Node* Edge::getDestinyNode() {
 double Edge::getDistance() {
     return this->distance;
 }
+
+bool Node::operator<(Node & vertex) const {
+    return this->dist < vertex.dist;
+}
+
+double Node::getLatitude() const {
+    return latitude;
+}
+
+double Node::getLongitude() const {
+    return longitude;
+}
