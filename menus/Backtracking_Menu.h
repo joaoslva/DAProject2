@@ -1,10 +1,5 @@
-//
-// Created by franc on 31/05/2023.
-//
-
 #ifndef PROJETO_2_BACKTRACKING_MENU_H
 #define PROJETO_2_BACKTRACKING_MENU_H
-
 
 #include "Menu.h"
 
@@ -19,9 +14,9 @@ public:
     
     bool start();
 
-
     static void algorithmDescription();
 
+    void backtrackingAlgorithm();
 
     explicit Backtracking_Menu(const Graph &graph, const int &graph_loaded);
 
