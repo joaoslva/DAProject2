@@ -7,6 +7,7 @@
 #include <string>
 #include <unistd.h>
 #include <iomanip>
+#include <chrono>
 #include "../Graph.h"
 
 class Menu {
@@ -56,6 +57,16 @@ public:
     */
     bool feedbackLoop();
 
+
+    static void algorithmDescription(int menu);
+
+
+    bool verifyGraphType();
+
+    /*
+     * -----------LOAD GRAPH MENU----------- *
+     */
+
     /**
         * @brief Starts the Load Graph menu and handles user input.
         * @return Returns true if the program should continue running, false otherwise.
@@ -101,12 +112,39 @@ public:
     */
     void graphLoaded();
 
+    /*
+     * -----------BACKTRACKING MENU----------- *
+     */
+
+    /**
+    * @brief Verifies the type of the loaded graph and displays a message if no graph is loaded.
+    * @note If a graph isn´t loaded, a message is displayed to inform the user about the need to load a small graph.
+    * @note The time complexity of this function is O(1).
+    */
+    bool verifyGraphTypeBacktracking();
+
+    bool startBacktrackingMenu();
+
+    void backtrackingAlgorithm();
+
+    /*
+     * -----------TRIANGULAR APPROXIMATION HEURISTIC MENU----------- *
+     */
+
+    bool startTriApproxMenu();
+
+    void triApproxAlgorithm();
+
+    /*
+     * -----------OTHER HEURISTIC MENU----------- *
+     */
+
+    bool startOtherHeuristicsMenu();
+
+    void otherHeuristicsAlgorithm();
 };
 
 
-#include "Backtracking_Menu.h"
-#include "Triangular_Menu.h"
-#include "Other_Heuristics_Menu.h"
 
 
 #endif //PROJETO_2_MENU_H

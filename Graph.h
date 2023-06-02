@@ -87,19 +87,32 @@ public:
 
     std::vector<Node *> prim();
 
-    double triangularApproximationHeuristic();
+    double triangularApproximationHeuristic(std::vector<Node *> &path);
 
     double static haversine(double lat1, double lon1, double lat2, double lon2);
 
     double static toRadians(double degrees);
 
-    void backtrackingRec(double **dists, unsigned int n, unsigned int curIndex, double curDist, unsigned int curPath[], double &minDist, unsigned int path[]);
+    void backtrackingRec(Node* node, unsigned int currentIndex, double currentDistance, std::vector<Node*> currentPath, double &minimumDistance, std::vector<Node*> &path);
 
-    double TSPBacktracking(double **dists, unsigned int n, unsigned int path[]);
+    double TSPBacktracking(std::vector<Node*>& path);
 
     unsigned long getNumNodes() const;
 
     void pathDFS(const int & source, std::vector<int> *res);
+
+    void setNodesVisited(bool visited);
+
+    void createMSTGraph(const int & source, Graph *mstGraph);
+
+    double ourTryOnChristofidesAlgorithm(std::vector<int> &path);
+
+    std::vector<Edge*> minimumWeightMatching(Graph &graph);
+
+    void setNodesIndegree();
+
+    bool allVisitedExcept(int index);
+
 
 private:
     std::vector<Node*> nodes;

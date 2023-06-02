@@ -219,49 +219,55 @@ unsigned long Graph::getNumNodes() const {
     return this->nodes.size();
 }
 
-void Graph::backtrackingRec(double **dists, unsigned int n, unsigned int curIndex, double curDist, unsigned int curPath[], double &minDist, unsigned int path[]) {
-    if(curIndex == n) {
-        curDist += dists[curPath[n - 1]][curPath[0]];
-        if(curDist < minDist) {
-            minDist = curDist;
-            // Copy the current path to the path array
-            for(unsigned int i = 0; i < n; i++) {
-                path[i] = curPath[i];
+void Graph::backtrackingRec(Node* node, unsigned int currentIndex, double currentDistance, std::vector<Node*> currentPath, double &minimumDistance, std::vector<Node*> &path) {
+    node->setVisited(true);//Mark the node as visited
+
+    currentPath[currentIndex - 1] = node;//Add the node to the current path
+
+    if (currentIndex == getNumNodes()) {//If the current index is equal to the number of nodes, we have a possible path. Base case for the recursion
+        node->setVisited(false);//Mark the node as not visited, allowing for a new path to be found
+
+        //See if the last node connects to the first node
+        Edge* finalEdge = nullptr;
+        for (auto edge : node->getOutgoingEdges()) {
+            if (edge->getDestinyNode()->getIndex() == 0) {
+                finalEdge = edge;
+                break;
+            }
+        }
+
+        //If the last node connects to the first node, we have a possible path
+        if(finalEdge != nullptr){
+            currentDistance += finalEdge->getDistance();
+            if (currentDistance < minimumDistance) {
+                minimumDistance = currentDistance;
+                path = currentPath;
             }
         }
         return;
     }
 
-    // Try to add all possible vertices to the current path
-    for(unsigned int i = 1; i < n; i++) { // The 0-th vertex is the initial vertex, so we skip it
-        if(dists[curPath[curIndex - 1]][i] == -1) continue; // If there is no edge between the current vertex and the i-th vertex, skip it
-        if(curDist + dists[curPath[curIndex - 1]][i] < minDist) {
-            bool isNewVertex = true;
-            for(unsigned int j = 1; j < curIndex; j++) {
-                if(curPath[j] == i) {
-                    isNewVertex = false;
-                    break;
-                }
-            }
-            if(isNewVertex) {
-                curPath[curIndex] = i;
-                backtrackingRec(dists, n, curIndex + 1, curDist + dists[curPath[curIndex - 1]][curPath[curIndex]],
-                                curPath, minDist, path);
-            }
+    //Try to find a path from the current node, if the distance is less than the minimum distance and the node hasn't been visited
+    for(Edge* edge: node->getOutgoingEdges()){
+        Node* nextNode = edge->getDestinyNode();
+
+        if(!nextNode->isVisited() && currentDistance + edge->getDistance() < minimumDistance){
+            backtrackingRec(nextNode, currentIndex + 1, currentDistance + edge->getDistance(), currentPath, minimumDistance, path);
         }
     }
+
+    node->setVisited(false);
 }
 
-double Graph::TSPBacktracking(double **dists, unsigned int n, unsigned int path[]) {
-    unsigned int curPath[n];
-    double minDist = std::numeric_limits<double>::max();
+double Graph::TSPBacktracking(std::vector<Node*>& path) {
+    std::vector<Node*> currentPath(getNumNodes());
+    double minimumDist = INFINITY;
 
-    // Initialize the current path with node 0, by default
-    curPath[0] = 0;
+    setNodesVisited(false);
 
-    // Call the recursive function starting with index 1 since node 0 is already in the path
-    backtrackingRec(dists, n, 1, 0, curPath, minDist, path);
-    return minDist;
+    backtrackingRec(nodes[0], 1, 0.0, currentPath, minimumDist, path);
+
+    return minimumDist;
 }
 
 std::vector<Node *> Graph::prim() {
@@ -308,8 +314,7 @@ std::vector<Node *> Graph::prim() {
     return this->nodes;
 }
 
-double Graph::triangularApproximationHeuristic(){
-    std::cout << "Triangular Approximation Heuristic:\n";
+double Graph::triangularApproximationHeuristic(std::vector<Node *> &path) {
     double approxDist = 0.0;
     std::vector<Node *> primResult = prim();
     std::vector<int> res;
@@ -329,9 +334,9 @@ double Graph::triangularApproximationHeuristic(){
         if(!flag)
             approxDist += haversine(orig->getLatitude(), orig->getLongitude(), dest->getLatitude(), dest->getLongitude());
 
-        std::cout << orig->getIndex() << "->";
+        path.push_back(orig);
     }
-    std::cout << primResult[0]->getIndex() << '\n';
+    path.push_back(primResult[0]);
     return approxDist;
 }
 
@@ -368,5 +373,146 @@ void Graph::pathDFS(const int & source, std::vector<int> *res) {
                 pathDFS(w->getIndex(),res);
             }
         }
+    }
+}
+
+void Graph::createMSTGraph(const int & source, Graph *mstGraph) {
+    Node* v = findNode(source);
+    for (auto e: v->getOutgoingEdges()){
+        Node* w = e->getDestinyNode();
+        Edge* path = w->getPath();
+        if(path != nullptr){
+            if(path->getSourceNode()->getIndex() == v->getIndex()){
+                mstGraph->addBidirectionalEdge(path->getSourceNode()->getIndex(), path->getDestinyNode()->getIndex(), path->getDistance());
+                createMSTGraph(w->getIndex(), mstGraph);
+            }
+        }
+    }
+}
+
+double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
+    Graph mstGraph;
+    for(int i=0; i<nodes.size(); i++){
+        mstGraph.addNode(i);
+    }
+    Graph oddNodesGraph;
+
+    prim(); //Creates a MST by using Prim's algorithm
+
+    createMSTGraph(0, &mstGraph); //Creates a MST graph by using the MST created by Prim's algorithm
+
+    mstGraph.setNodesIndegree(); //Sets the indegree of each node
+
+    for (auto v: mstGraph.getNodes()){//Creates a graph with the odd degree nodes of the MST
+        if(v->getIndegree() % 2 != 0){
+            oddNodesGraph.addNode(v->getIndex(), v->getLatitude(), v->getLongitude());
+        }
+    }
+
+    std::vector<Edge*> toAdd = minimumWeightMatching(oddNodesGraph);//Creates a minimum weight matching set of edges to add to the MST
+
+    for (auto e: toAdd){//Adds the edges to the MST
+        mstGraph.addBidirectionalEdge(e->getSourceNode()->getIndex(), e->getDestinyNode()->getIndex(), e->getDistance());
+    }
+
+    mstGraph.setNodesVisited(false);
+
+    double distance = 0.0;
+    Edge* bestEdge = new Edge(INFINITY);
+    Node* currentNode = mstGraph.findNode(0);
+    currentNode->setVisited(true);
+
+    for(int i = 0; i < mstGraph.getNodes().size(); i++){
+        path.push_back(currentNode->getIndex());
+        for(Edge* edge : currentNode->getOutgoingEdges()){
+            if(edge->getDistance() < bestEdge->getDistance() && !edge->getDestinyNode()->isVisited()){
+                bestEdge = edge;
+            }
+        }
+        distance += bestEdge->getDistance();
+        currentNode = bestEdge->getDestinyNode();
+        currentNode->setVisited(true);
+    }
+
+    if(path.size() == mstGraph.getNodes().size()){
+        for(Edge* edge : currentNode->getOutgoingEdges()){
+            if(edge->getDestinyNode()->getIndex() == 0){
+                distance += edge->getDistance();
+                path.push_back(0);
+                return distance;
+            }
+        }
+    }
+
+    for(int i=0; i<mstGraph.getNodes().size(); i++){
+        Node* u = findNode(mstGraph.getNodes()[i]->getIndex());
+        u->setVisited(mstGraph.getNodes()[i]->isVisited());
+    }
+    currentNode = findNode(currentNode->getIndex()); //Get current node of normal graph
+    while(!allVisitedExcept(0)){
+        for(auto &node:nodes){
+            if(!node->isVisited() && node->getIndex() != 0){
+                for(Edge* edge : currentNode->getOutgoingEdges()){
+                    if(edge->getDestinyNode()->getIndex() == node->getIndex()){
+                        distance += edge->getDistance();
+                        path.push_back(node->getIndex());
+                        break;
+                    }
+                }
+                node->setVisited(true);
+                currentNode = node;
+            }
+        }
+    }
+
+    return distance;
+}
+
+std::vector<Edge*> Graph::minimumWeightMatching(Graph &graph) {
+    graph.setNodesVisited(false);
+
+    std::vector<Edge*> edges;
+
+    for(auto v : graph.getNodes()) {
+        for(auto e : v->getOutgoingEdges()) {
+            if(std::find(edges.begin(), edges.end(), e->getReverseEdge()) == edges.end())
+                edges.push_back(e);
+        }
+    }
+
+    std::sort(edges.begin(), edges.end(), [](Edge* e1, Edge* e2) {
+        return e1->getDistance() < e2->getDistance();
+    });
+
+    std::vector<Edge*> matching;
+
+    for(auto e : edges) {
+        if(!e->getSourceNode()->isVisited() && !e->getDestinyNode()->isVisited()) {
+            matching.push_back(e);
+            e->getSourceNode()->setVisited(true);
+            e->getDestinyNode()->setVisited(true);
+        }
+    }
+
+    return matching;
+}
+
+bool Graph::allVisitedExcept(int index){
+    for (auto node:nodes){
+        if (!node->isVisited() && node->getIndex() != index)
+            return false;
+    }
+    return true;
+}
+
+void Graph::setNodesVisited(bool visited) {
+    for(auto v : nodes) {
+        v->setVisited(visited);
+    }
+}
+
+void Graph::setNodesIndegree(){
+    for(auto v:nodes){
+        v->setIndegree(v->getIncomingEdges().size());
     }
 }

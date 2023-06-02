@@ -97,6 +97,10 @@ public:
 
     Edge *getPath() const;
 
+    unsigned int getIndegree() const;
+
+    void setIndegree(unsigned int indegree);
+
     bool operator<(Node & vertex) const; // // required by MutablePriorityQueue
 
     int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
@@ -111,6 +115,7 @@ private:
     double dist = 0;
     bool visited = false;
     Edge *path = nullptr;
+    unsigned int indegree;
 
     std::vector<Edge*> outgoingEdges;
     std::vector<Edge*> incomingEdges;
@@ -130,7 +135,7 @@ public:
     */
     Edge(Node* sourceNode, Node* destinyNode, double distance);
 
-    
+    Edge(double distance);
     /**
     * @brief Returns the source node of the edge.
     * @return Pointer to the source node.
@@ -161,6 +166,8 @@ public:
     * @note Time complexity: O(1)
     */
     void setReverse(Edge* edge);
+
+    Edge* getReverseEdge();
 
 private:
     Node* sourceNode;
