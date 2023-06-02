@@ -103,6 +103,17 @@ public:
 
     void setNodesVisited(bool visited);
 
+    void createMSTGraph(const int & source, Graph *mstGraph);
+
+    double ourTryOnChristofidesAlgorithm(std::vector<int> &path);
+
+    std::vector<Edge*> minimumWeightMatching(Graph &graph);
+
+    void setNodesIndegree();
+
+    bool allVisitedExcept(int index);
+
+
 private:
     std::vector<Node*> nodes;
 };

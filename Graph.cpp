@@ -376,8 +376,143 @@ void Graph::pathDFS(const int & source, std::vector<int> *res) {
     }
 }
 
+void Graph::createMSTGraph(const int & source, Graph *mstGraph) {
+    Node* v = findNode(source);
+    for (auto e: v->getOutgoingEdges()){
+        Node* w = e->getDestinyNode();
+        Edge* path = w->getPath();
+        if(path != nullptr){
+            if(path->getSourceNode()->getIndex() == v->getIndex()){
+                mstGraph->addBidirectionalEdge(path->getSourceNode()->getIndex(), path->getDestinyNode()->getIndex(), path->getDistance());
+                createMSTGraph(w->getIndex(), mstGraph);
+            }
+        }
+    }
+}
+
+double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
+    Graph mstGraph;
+    for(int i=0; i<nodes.size(); i++){
+        mstGraph.addNode(i);
+    }
+    Graph oddNodesGraph;
+
+    prim(); //Creates a MST by using Prim's algorithm
+
+    createMSTGraph(0, &mstGraph); //Creates a MST graph by using the MST created by Prim's algorithm
+
+    mstGraph.setNodesIndegree(); //Sets the indegree of each node
+
+    for (auto v: mstGraph.getNodes()){//Creates a graph with the odd degree nodes of the MST
+        if(v->getIndegree() % 2 != 0){
+            oddNodesGraph.addNode(v->getIndex(), v->getLatitude(), v->getLongitude());
+        }
+    }
+
+    std::vector<Edge*> toAdd = minimumWeightMatching(oddNodesGraph);//Creates a minimum weight matching set of edges to add to the MST
+
+    for (auto e: toAdd){//Adds the edges to the MST
+        mstGraph.addBidirectionalEdge(e->getSourceNode()->getIndex(), e->getDestinyNode()->getIndex(), e->getDistance());
+    }
+
+    mstGraph.setNodesVisited(false);
+
+    double distance = 0.0;
+    Edge* bestEdge = new Edge(INFINITY);
+    Node* currentNode = mstGraph.findNode(0);
+    currentNode->setVisited(true);
+
+    for(int i = 0; i < mstGraph.getNodes().size(); i++){
+        path.push_back(currentNode->getIndex());
+        for(Edge* edge : currentNode->getOutgoingEdges()){
+            if(edge->getDistance() < bestEdge->getDistance() && !edge->getDestinyNode()->isVisited()){
+                bestEdge = edge;
+            }
+        }
+        distance += bestEdge->getDistance();
+        currentNode = bestEdge->getDestinyNode();
+        currentNode->setVisited(true);
+    }
+
+    if(path.size() == mstGraph.getNodes().size()){
+        for(Edge* edge : currentNode->getOutgoingEdges()){
+            if(edge->getDestinyNode()->getIndex() == 0){
+                distance += edge->getDistance();
+                path.push_back(0);
+                return distance;
+            }
+        }
+    }
+
+    for(int i=0; i<mstGraph.getNodes().size(); i++){
+        Node* u = findNode(mstGraph.getNodes()[i]->getIndex());
+        u->setVisited(mstGraph.getNodes()[i]->isVisited());
+    }
+    currentNode = findNode(currentNode->getIndex()); //Get current node of normal graph
+    while(!allVisitedExcept(0)){
+        for(auto &node:nodes){
+            if(!node->isVisited() && node->getIndex() != 0){
+                for(Edge* edge : currentNode->getOutgoingEdges()){
+                    if(edge->getDestinyNode()->getIndex() == node->getIndex()){
+                        distance += edge->getDistance();
+                        path.push_back(node->getIndex());
+                        break;
+                    }
+                }
+                node->setVisited(true);
+                currentNode = node;
+            }
+        }
+    }
+
+    return distance;
+}
+
+std::vector<Edge*> Graph::minimumWeightMatching(Graph &graph) {
+    graph.setNodesVisited(false);
+
+    std::vector<Edge*> edges;
+
+    for(auto v : graph.getNodes()) {
+        for(auto e : v->getOutgoingEdges()) {
+            if(std::find(edges.begin(), edges.end(), e->getReverseEdge()) == edges.end())
+                edges.push_back(e);
+        }
+    }
+
+    std::sort(edges.begin(), edges.end(), [](Edge* e1, Edge* e2) {
+        return e1->getDistance() < e2->getDistance();
+    });
+
+    std::vector<Edge*> matching;
+
+    for(auto e : edges) {
+        if(!e->getSourceNode()->isVisited() && !e->getDestinyNode()->isVisited()) {
+            matching.push_back(e);
+            e->getSourceNode()->setVisited(true);
+            e->getDestinyNode()->setVisited(true);
+        }
+    }
+
+    return matching;
+}
+
+bool Graph::allVisitedExcept(int index){
+    for (auto node:nodes){
+        if (!node->isVisited() && node->getIndex() != index)
+            return false;
+    }
+    return true;
+}
+
 void Graph::setNodesVisited(bool visited) {
     for(auto v : nodes) {
         v->setVisited(visited);
+    }
+}
+
+void Graph::setNodesIndegree(){
+    for(auto v:nodes){
+        v->setIndegree(v->getIncomingEdges().size());
     }
 }

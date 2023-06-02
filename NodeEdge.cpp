@@ -101,6 +101,10 @@ Edge::Edge(Node *sourceNode, Node *destinyNode, double distance) {
     this->distance = distance;
 }
 
+Edge::Edge(double distance) {
+    this->distance = distance;
+}
+
 void Edge::setReverse(Edge *edge) {
     this->reverseEdge = edge;
 }
@@ -131,4 +135,16 @@ double Node::getLongitude() const {
 
 Edge *Node::getPath() const {
     return path;
+}
+
+unsigned int Node::getIndegree() const {
+    return this->indegree;
+}
+
+void Node::setIndegree(unsigned int indegree) {
+    this->indegree = indegree;
+}
+
+Edge* Edge::getReverseEdge() {
+    return this->reverseEdge;
 }

@@ -135,6 +135,13 @@ public:
 
     void triApproxAlgorithm();
 
+    /*
+     * -----------OTHER HEURISTIC MENU----------- *
+     */
+
+    bool startOtherHeuristicsMenu();
+
+    void otherHeuristicsAlgorithm();
 };
 
 
