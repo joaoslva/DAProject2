@@ -407,8 +407,10 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
     for (auto v: mstGraph.getNodes()){//Creates a graph with the odd degree nodes of the MST
         if(v->getIndegree() % 2 != 0){
             oddNodesGraph.addNode(v->getIndex(), v->getLatitude(), v->getLongitude());
-            for(Edge* edge: v->getOutgoingEdges()){
-                if(edge->getDestinyNode()->getIndegree() % 2 != 0){
+            Node* w = this->findNode(v->getIndex());
+            for(Edge* edge: w->getOutgoingEdges()){
+                Node* pointedTo = mstGraph.findNode(edge->getDestinyNode()->getIndex());
+                if(pointedTo->getIndegree() % 2 != 0){
                     if(std::find(oddNodesEdges.begin(), oddNodesEdges.end(), std::make_pair(std::make_pair(edge->getDestinyNode()->getIndex(), v->getIndex()), edge->getDistance())) == oddNodesEdges.end())
                         oddNodesEdges.push_back(std::make_pair(std::make_pair(v->getIndex(), edge->getDestinyNode()->getIndex()), edge->getDistance()));
                 }
