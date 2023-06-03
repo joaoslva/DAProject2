@@ -462,7 +462,8 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
     }
 
     if(path.size() == mstGraph.getNodes().size()){
-        for(Edge* edge : currentNode->getOutgoingEdges()){
+        Node* realNode = this->findNode(currentNode->getIndex());
+        for(Edge* edge : realNode->getOutgoingEdges()){
             if(edge->getDestinyNode()->getIndex() == 0){
                 distance += edge->getDistance();
                 path.push_back(0);
@@ -470,28 +471,6 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
             }
         }
     }
-/*
-    for(int i=0; i<mstGraph.getNodes().size(); i++){
-        Node* u = findNode(mstGraph.getNodes()[i]->getIndex());
-        u->setVisited(mstGraph.getNodes()[i]->isVisited());
-    }
-    currentNode = findNode(currentNode->getIndex()); //Get current node of normal graph
-    while(!allVisitedExcept(0)){
-        for(auto &node:nodes){
-            if(!node->isVisited() && node->getIndex() != 0){
-                for(Edge* edge : currentNode->getOutgoingEdges()){
-                    if(edge->getDestinyNode()->getIndex() == node->getIndex()){
-                        distance += edge->getDistance();
-                        path.push_back(node->getIndex());
-                        break;
-                    }
-                }
-                node->setVisited(true);
-                currentNode = node;
-            }
-        }
-    }
-*/
     return distance;
 }
 
