@@ -418,20 +418,23 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
     mstGraph.setNodesVisited(false);
 
     double distance = 0.0;
-    Edge* bestEdge = new Edge(INFINITY);
     Node* currentNode = mstGraph.findNode(0);
     currentNode->setVisited(true);
 
     for(int i = 0; i < mstGraph.getNodes().size(); i++){
+        Edge* bestEdge = new Edge(INFINITY);
         path.push_back(currentNode->getIndex());
         for(Edge* edge : currentNode->getOutgoingEdges()){
             if(edge->getDistance() < bestEdge->getDistance() && !edge->getDestinyNode()->isVisited()){
                 bestEdge = edge;
             }
         }
-        distance += bestEdge->getDistance();
-        currentNode = bestEdge->getDestinyNode();
-        currentNode->setVisited(true);
+        if(bestEdge->getDistance() != INFINITY){
+            distance += bestEdge->getDistance();
+            currentNode = bestEdge->getDestinyNode();
+            currentNode->setVisited(true);
+        }
+        else delete bestEdge;
     }
 
     if(path.size() == mstGraph.getNodes().size()){
@@ -443,7 +446,7 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
             }
         }
     }
-
+/*
     for(int i=0; i<mstGraph.getNodes().size(); i++){
         Node* u = findNode(mstGraph.getNodes()[i]->getIndex());
         u->setVisited(mstGraph.getNodes()[i]->isVisited());
@@ -464,7 +467,7 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
             }
         }
     }
-
+*/
     return distance;
 }
 
