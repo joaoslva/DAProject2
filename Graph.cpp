@@ -447,7 +447,18 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
             currentNode = bestEdge->getDestinyNode();
             currentNode->setVisited(true);
         }
-        else delete bestEdge;
+        else {
+            std::vector<Edge *> closestEdges = closestShortcutTo(currentNode->getIndex());
+            for(auto edge:closestEdges){
+                Node* mstShortContender = mstGraph.findNode(edge->getDestinyNode()->getIndex());
+                if(!mstShortContender->isVisited()){
+                    distance += edge->getDistance();
+                    currentNode = mstShortContender;
+                    currentNode->setVisited(true);
+                    break;
+                }
+            }
+        }
     }
 
     if(path.size() == mstGraph.getNodes().size()){
@@ -519,6 +530,20 @@ bool Graph::allVisitedExcept(int index){
             return false;
     }
     return true;
+}
+
+std::vector<Edge*> Graph::closestShortcutTo(int index){
+
+    std::vector<Edge*> edges;
+
+    for(auto e : nodes[index]->getOutgoingEdges()) {
+        edges.push_back(e);
+    }
+
+    std::sort(edges.begin(),edges.end(), [](Edge* e1, Edge* e2) {
+        return e1->getDistance() < e2->getDistance();
+    });
+    return edges;
 }
 
 void Graph::setNodesVisited(bool visited) {

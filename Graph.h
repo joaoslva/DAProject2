@@ -243,6 +243,8 @@ public:
     */
     bool allVisitedExcept(int index);
 
+    std::vector<Edge*> closestShortcutTo(int index);
+
 
 private:
     std::vector<Node*> nodes;
