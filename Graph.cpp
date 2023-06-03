@@ -403,10 +403,21 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
 
     mstGraph.setNodesIndegree(); //Sets the indegree of each node
 
+    std::vector<std::pair<std::pair<int, int>, double>> oddNodesEdges;
     for (auto v: mstGraph.getNodes()){//Creates a graph with the odd degree nodes of the MST
         if(v->getIndegree() % 2 != 0){
             oddNodesGraph.addNode(v->getIndex(), v->getLatitude(), v->getLongitude());
+            for(Edge* edge: v->getOutgoingEdges()){
+                if(edge->getDestinyNode()->getIndegree() % 2 != 0){
+                    if(std::find(oddNodesEdges.begin(), oddNodesEdges.end(), std::make_pair(std::make_pair(edge->getDestinyNode()->getIndex(), v->getIndex()), edge->getDistance())) == oddNodesEdges.end())
+                        oddNodesEdges.push_back(std::make_pair(std::make_pair(v->getIndex(), edge->getDestinyNode()->getIndex()), edge->getDistance()));
+                }
+            }
         }
+    }
+
+    for (auto e: oddNodesEdges){//Adds the edges to the oddNodesGraph
+        oddNodesGraph.addBidirectionalEdge(e.first.first, e.first.second, e.second);
     }
 
     std::vector<Edge*> toAdd = minimumWeightMatching(oddNodesGraph);//Creates a minimum weight matching set of edges to add to the MST
@@ -477,7 +488,7 @@ std::vector<Edge*> Graph::minimumWeightMatching(Graph &graph) {
     std::vector<Edge*> edges;
 
     for(auto v : graph.getNodes()) {
-        for(auto e : v->getOutgoingEdges()) {
+         for(auto e : v->getOutgoingEdges()) {
             if(std::find(edges.begin(), edges.end(), e->getReverseEdge()) == edges.end())
                 edges.push_back(e);
         }
