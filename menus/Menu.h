@@ -48,7 +48,8 @@ public:
     */
     void quitMessage();
     
-    
+    bool verifyLoadedGraph();
+
     /**
     * @brief Performs a feedback loop, allowing the user to provide input until a valid input is received.
     * @return A boolean value indicating whether to stay in the loop (true) or return to the previous page (false).
@@ -61,7 +62,7 @@ public:
     static void algorithmDescription(int menu);
 
 
-    bool verifyGraphType();
+
 
     /*
      * -----------LOAD GRAPH MENU----------- *

@@ -1,7 +1,3 @@
-//
-// Created by gakes on 30/05/2023.
-//
-
 #include "Menu.h"
 
 
@@ -13,7 +9,7 @@ void Menu::start(){
 
     std::cout << "\n|-----------------------------------------------------------|\n";
     std::cout << "|                                                           |\n";
-    //TODO description of the project
+    std::cout << "|        - GRAPH TSP ROUTING ALGORITHMS APP 2000 -          |\n";
     std::cout << "|                                                           |\n";
     std::cout << "|-----------------------------------------------------------|\n";
     std::cout << "|                                                           |\n";
@@ -65,18 +61,27 @@ void Menu::start(){
 }
 
 void Menu::helpMainMenu() {
-    bool running = true;
-    while(running) {
-        std::string helpChoice;
-
-        std::cout << "|------------------------Help Page--------------------------|\n";
-        std::cout << "|                                                           |\n";
-        //TODO help page description
-        std::cout << "|                                                           |\n";
-        std::cout << "| Write 'back' to go to the previous page                   |\n";
-        std::cout << "| Enter here: ";
-        running = feedbackLoop();
-    }
+    std::cout << "|------------------------Help Page--------------------------|\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "| 1 - Load Graph: In this option you can load a graph from  |\n";
+    std::cout << "|     a file. There are 3 types of graphs you can load: Toy |\n";
+    std::cout << "|     Graphs, Extra Connected Graphs and Real World Graphs. |\n";
+    std::cout << "| 2 - Backtracking Algorithm: In this option you can run    |\n";
+    std::cout << "|     the backtracking algorithm to find the shortest path  |\n";
+    std::cout << "|     connecting all the nodes in the graph.                |\n";
+    std::cout << "| 3 - Triangular Approximation Heuristic: In this option    |\n";
+    std::cout << "|     you can run the Triangular Approximation Heuristic to |\n";
+    std::cout << "|     find the shortest path connecting all the nodes in    |\n";
+    std::cout << "|     the graph.                                            |\n";
+    std::cout << "| 4 - Other Heuristics: In this option you can run other    |\n";
+    std::cout << "|     heuristics created by us to find the shortest path    |\n";
+    std::cout << "|     connecting all the nodes in the graph.                |\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "| To use the program, first you need to load a graph. Then  |\n";
+    std::cout << "| you can run the algorithms to find the shortest path.     |\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "|-----------------------------------------------------------|\n";
+    std::cout << "|                                                           |\n";
 }
 
 
@@ -386,14 +391,16 @@ void Menu::graphLoaded() {
     std::cout << "|         The chosen Graph was loaded successfully!         |\n";
 }
 
-bool Menu::verifyGraphType() {
-    if (graph_loaded == 0){
+bool Menu::verifyLoadedGraph() {
+    if(graph_loaded == 0){
+        std::cout << "|-----------------------------------------------------------|\n";
         std::cout << "|                                                           |\n";
-        std::cout << "| You haven't loaded any graph yet. To use the Triangular   |\n";
-        std::cout << "| Approximation Heuristic, you must load some graph from    |\n";
-        std::cout << "| the Menu Load Graph!!!                                    |\n";
+        std::cout << "| You haven't loaded any graph yet. To use Backtracking     |\n";
+        std::cout << "| use a small graph (like the Toy Graphs or the Extra ones),|\n";
+        std::cout << "| due to this algorithm's high computational complexity!    |\n";
         std::cout << "|                                                           |\n";
         std::cout << "|-----------------------------------------------------------|\n";
+        std::cout << "|                                                           |\n";
         return false;
     }
     return true;
@@ -401,22 +408,27 @@ bool Menu::verifyGraphType() {
 
 bool Menu::verifyGraphTypeBacktracking() {
     if (graph_loaded == 0){
+        std::cout << "|-----------------------------------------------------------|\n";
         std::cout << "|                                                           |\n";
         std::cout << "| You haven't loaded any graph yet. To use Backtracking     |\n";
         std::cout << "| use a small graph (like the Toy Graphs or the Extra ones),|\n";
         std::cout << "| due to this algorithm's high computational complexity!    |\n";
         std::cout << "|                                                           |\n";
+        std::cout << "|-----------------------------------------------------------|\n";
+        std::cout << "|                                                           |\n";
         return false;
     }
 
     else if(graph_loaded == 3){
+        std::cout << "|-----------------------------------------------------------|\n";
         std::cout << "|                                                           |\n";
         std::cout << "| You appear to have loaded a Real-world graph. Since you   |\n";
-        std::cout << "| don't wan't to be were waiting 1000 years for the program |\n";
+        std::cout << "| don't want to be were waiting 1000 years for the program |\n";
         std::cout << "| to finish, please load a small graph (like the Toy Graphs |\n";
         std::cout << "| or the Extra ones), due to this algorithm's high          |\n";
         std::cout << "| computational complexity!                                 |\n";
         std::cout << "|                                                           |\n";
+        std::cout << "|-----------------------------------------------------------|\n";
         return false;
     }
     return true;
@@ -479,6 +491,8 @@ void Menu::algorithmDescription(int menu) {
         std::cout << "| best solution.                                            |\n";
         std::cout << "|                                                           |\n";
         std::cout << "|-----------------------------------------------------------|\n";
+        std::cout << "|                                                           |\n";
+        std::cout << "| - BACKTRACKING MENU -                                     |\n";
     }
     else if (menu == 2){
         std::cout << "|-------------------Algorithm Description-------------------|\n";
@@ -493,6 +507,8 @@ void Menu::algorithmDescription(int menu) {
         std::cout << "| chosen by an approximation.                               |\n";
         std::cout << "|                                                           |\n";
         std::cout << "|-----------------------------------------------------------|\n";
+        std::cout << "|                                                           |\n";
+        std::cout << "| - TRIANGULAR APPROXIMATION MENU -                          |\n";
     }
     else if(menu == 3){
         std::cout << "|-------------------Algorithm Description-------------------|\n";
@@ -509,6 +525,8 @@ void Menu::algorithmDescription(int menu) {
         std::cout << "| the last connected node to node 0.                        |\n";
         std::cout << "|                                                           |\n";
         std::cout << "|-----------------------------------------------------------|\n";
+        std::cout << "|                                                           |\n";
+        std::cout << "| - OTHER HEURISTICS MENU -                                  |\n";
     }
 }
 
@@ -606,6 +624,8 @@ void Menu::backtrackingAlgorithm() {
 }
 
 bool Menu::startTriApproxMenu() {
+    if(verifyLoadedGraph() == false) return true;
+
     std::string triAproxChoice;
 
     std::cout << "|-----------------------------------------------------------|\n";
@@ -733,12 +753,13 @@ void Menu::triApproxAlgorithm() {
 }
 
 bool Menu::startOtherHeuristicsMenu() {
+    if(verifyLoadedGraph() == false) return true;
+
     std::string otherHeuristicsChoice;
 
     std::cout << "|-----------------------------------------------------------|\n";
     std::cout << "|                                                           |\n";
     std::cout << "| - OTHER HEURISTICS MENU -                                 |\n";
-    std::cout << "|                                                           |\n";
     while(true){
         std::cout << "|                                                           |\n";
         std::cout << "| 1 - Run the algorithm                                     |\n";
@@ -794,5 +815,65 @@ void Menu::otherHeuristicsAlgorithm() {
         std::cout << " ";
     }
     std::cout << "|\n";
+    std::cout << "| Total time elapsed: " << elapsed.count() << " seconds";
+    for(int i = 0; i < 59 - 30 - std::to_string(elapsed.count()).length(); i++){
+        std::cout << " ";
+    }
+    std::cout << "|\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "| Do you wish to see the path?                              |\n";
+    std::cout << "| Enter here your choice (yes/no): ";
+    std::string choice;
+    while (true){
+        std::getline(std::cin, choice);
+        if(choice == "yes"){
+            int charCounter = 1;
+            std::cout << "|                                                           |\n";
+            std::cout << "| The path is:                                              |\n";
+            std::cout << "| ";
+            for(int i = 0; i < path.size(); i++){
+                charCounter += (4 + std::to_string(path[i]).length());
+                if (charCounter > 58){
+                    for(int j = 0; j < 59 - charCounter + std::to_string(path[i]).length() + 4; j++){
+                        std::cout << " ";
+                    }
+                    std::cout << "|\n";
+                    std::cout << "| ";
+                    charCounter = (1 + 4 + std::to_string(path[i]).length());
+                }
+                if(i == path.size() - 1){
+                    std::cout << path[i];
+                    charCounter -= 4;
+                }
+                else{
+                    std::cout << path[i] << " -> ";
+                }
+            }
 
+            for(int j = 0; j < 59 - charCounter; j++){
+                std::cout << " ";
+            }
+
+            std::cout << "|\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "|-----------------------------------------------------------|\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| - OTHER HEURISTICS MENU -                                 |\n";
+            break;
+        }
+        else if(choice == "no"){
+            std::cout << "|                                                           |\n";
+            std::cout << "|-----------------------------------------------------------|\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| - OTHER HEURISTICS MENU -                                 |\n";
+            break;
+        }
+        else{
+            std::cout << "|                                                           |\n";
+            std::cout << "| Not a valid input, please try again                       |\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| Do you wish to see the path?                              |\n";
+            std::cout << "| Enter here your choice (yes/no): ";
+        }
+    }
 }
