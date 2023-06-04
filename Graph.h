@@ -209,40 +209,12 @@ public:
 
 
     /**
-    * @brief Implements our version of the Christofides Algorithm for the Traveling Salesman Problem (TSP).
+    * @brief Implements our heuristic to solve the Traveling Salesman Problem (TSP). We use a MST and look the closest neighbour from the root. Consistently better for large graphs than triangular approx.
     * @param path The minimum distance path based on the Christofides Algorithm.
     * @return The minimum distance using the Christofides Algorithm.
     * @note Time complexity: O(n^3) - cubic complexity.
     */
     double ourHeuristic(std::vector<int> &path);
-
-
-
-    /**
-    * @brief Computes the minimum weight matching for the given graph.
-    * @param graph The graph to compute the matching on.
-    * @return A vector of edges representing the minimum weight matching.
-    * @note Time complexity: O(E log E), where E is the number of edges in the graph.
-    */
-    std::vector<Edge*> minimumWeightMatching(Graph &graph);
-
-
-
-    /**
-    * @brief Sets the indegree of each node based on the number of incoming edges.
-    * @note Time complexity: O(N), where N is the number of nodes in the graph.
-    */
-    void setNodesIndegree();
-
-
-
-    /**
-    * @brief Checks if all nodes, except the one at the given index, have been visited.
-    * @param index The index of the node to exclude from the check.
-    * @return True if all nodes, except the one at the given index, have been visited; false otherwise.
-    * @note Time complexity: O(N), where N is the number of nodes in the graph.
-    */
-    bool allVisitedExcept(int index);
 
     std::vector<Edge*> closestShortcutTo(int index);
 

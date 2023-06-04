@@ -467,9 +467,3 @@ void Graph::setNodesVisited(bool visited) {
         v->setVisited(visited);
     }
 }
-
-void Graph::setNodesIndegree(){
-    for(auto v:nodes){
-        v->setIndegree(v->getIncomingEdges().size());
-    }
-}
