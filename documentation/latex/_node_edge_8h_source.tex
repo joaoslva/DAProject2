@@ -1,0 +1,101 @@
+\doxysection{Node\+Edge.\+h}
+\hypertarget{_node_edge_8h_source}{}\label{_node_edge_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROJETO\_2\_NODEEDGE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROJETO\_2\_NODEEDGE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_edge}{Edge}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_node}{Node}}\{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{double}\ latitude,\ \textcolor{keywordtype}{double}\ longitude);\ \textcolor{comment}{//used\ for\ real-\/world\ graph}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}(\textcolor{keywordtype}{int}\ index);\ \textcolor{comment}{//used\ for\ extra\ graphs}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_edge}{Edge}}*\ \mbox{\hyperlink{class_node_a26fc1cf7cf8bcf8cb9c620e0fc4879e6}{addEdge}}(\mbox{\hyperlink{class_node}{Node}}*\ destinyNode,\ \textcolor{keywordtype}{double}\ distance);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_node_afab71e914cbec8baba7f522bf79b8502}{removeEdge}}(\textcolor{keywordtype}{int}\ destID);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a733fbe1650a25553eb1a8b24d0f1d2d1}{deleteEdge}}(\mbox{\hyperlink{class_edge}{Edge}}*\ edge);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a65aa2df51dd000de1c936f2650455243}{removeOutgoingEdges}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_node_ab19ccd880a7acbe1efa28949c053fa58}{getIndex}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ std::vector<Edge*>\ \mbox{\hyperlink{class_node_ac72c821204bd639f1bd44918060f393a}{getOutgoingEdges}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \ \ \ \ std::vector<Edge*>\ \mbox{\hyperlink{class_node_a49933267c8760f47e8130dd4421c7769}{getIncomingEdges}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a2b362ede276752ef43c1cc45eeb64b79}{setDist}}(\textcolor{keywordtype}{double}\ dist);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a6fe3ebcd0eaf9fece72dfbc0ffc257bb}{setVisited}}(\textcolor{keywordtype}{bool}\ visited);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_acf6663d813e9acfc2bbc09001f1cb29e}{setPath}}(\mbox{\hyperlink{class_edge}{Edge}}\ *path);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_node_aef2fab11e82901b2a35af6c4837d18b2}{getDist}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_node_a97dd8f95e09a0516f8939627f94bd58e}{isVisited}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_node_a6a76240688eddc8a2942618074e28c92}{getLatitude}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_node_ad4a79ebbcca46dae4638ffbe4d732399}{getLongitude}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{class_edge}{Edge}}\ *\mbox{\hyperlink{class_node_aa65cdeade5f183eea5b8642b9a37acbe}{getPath}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_node_a72a0f9bd8f283c3fb536cda8fb30173a}{getIndegree}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a32ae13821030bd224e31a1bf4cd6880c}{setIndegree}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ indegree);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_node_aa2521fef8b2cbf414a8b22a84baa196e}{operator<}}(\mbox{\hyperlink{class_node}{Node}}\ \&\ vertex)\ \textcolor{keyword}{const};\ \textcolor{comment}{//\ //\ required\ by\ MutablePriorityQueue}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{int}\ queueIndex\ =\ 0;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ required\ by\ MutablePriorityQueue\ and\ UFDS}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{int}\ index;}
+\DoxyCodeLine{00161\ \ \ \ \ std::string\ label;\ \textcolor{comment}{//only\ used\ in\ the\ tourism\ toy\ graph}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{double}\ latitude;\ \textcolor{comment}{//only\ used\ for\ real-\/world\ graphs}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{double}\ longitude;\ \textcolor{comment}{//only\ used\ for\ real-\/world\ graphs}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{double}\ dist\ =\ 0;}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{bool}\ visited\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{class_edge}{Edge}}\ *path\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ indegree;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ std::vector<Edge*>\ outgoingEdges;}
+\DoxyCodeLine{00171\ \ \ \ \ std::vector<Edge*>\ incomingEdges;}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ parentNode\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_edge}{Edge}}\{}
+\DoxyCodeLine{00178\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{class_edge}{Edge}}(\mbox{\hyperlink{class_node}{Node}}*\ sourceNode,\ \mbox{\hyperlink{class_node}{Node}}*\ destinyNode,\ \textcolor{keywordtype}{double}\ distance);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{class_edge}{Edge}}(\textcolor{keywordtype}{double}\ distance);}
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_edge_ac18ac1fa5c63adc4a299b385143d0043}{getSourceNode}}();}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_edge_a2f3e4aa019bf5fd983cf9477390fc20e}{getDestinyNode}}();}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_edge_a116f3dc22db6e6fa81100d2b397c9c3b}{getDistance}}();}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_edge_a5f2115d329fdf018c85176765148da5c}{setReverse}}(\mbox{\hyperlink{class_edge}{Edge}}*\ edge);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{class_edge}{Edge}}*\ \mbox{\hyperlink{class_edge_ae8f0d324a2519f752cff7182fa9d5800}{getReverseEdge}}();}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ sourceNode;}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ destinyNode;}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{double}\ distance;}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{class_edge}{Edge}}*\ reverseEdge;}
+\DoxyCodeLine{00231\ \};}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

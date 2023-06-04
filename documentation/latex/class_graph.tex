@@ -1,0 +1,513 @@
+\doxysection{Graph Class Reference}
+\hypertarget{class_graph}{}\label{class_graph}\index{Graph@{Graph}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_a902c5b3eacb66d60752525ab23297a95}{\texorpdfstring{$\sim$}{\string~}\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_graph}{Graph} class. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a43e00cbcebbf5c1c513b32495af9ec9f}{create\+Real\+World\+Graph}} (const std\+::string \&nodes\+File\+Path, const std\+::string \&edges\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Creates a real-\/world graph by reading nodes and edges from files. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a8b98bca24599e781bd960c8751a8c215}{create\+Extra\+Graphs}} (const std\+::string \&edges\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Creates additional graphs by reading edges from a file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_aef5187a5bcfef1d5e16f62d8a548a0a8}{create\+Toy\+Graph}} (const std\+::string \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Creates a toy graph by reading data from a file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a2b3e1630cd9c4597645d8a3ca8e476a8}{add\+Node}} (const int \&node\+Index, double latitude=0, double longitude=0)
+\begin{DoxyCompactList}\small\item\em Adds a new node to the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a844c8b6d7afd3d7965f35472832a24ed}{add\+Bidirectional\+Edge}} (const int \&source\+Index, const int \&destiny\+Index, double distance)
+\begin{DoxyCompactList}\small\item\em Adds a bidirectional edge between two nodes in the graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_graph_af6fd3a19fad7f8fac83439ce9c233fe9}{find\+Node}} (int index)
+\begin{DoxyCompactList}\small\item\em Finds a node in the graph by its index. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_a79e0eaa71a68b231ffc69d09329c6d78}{get\+Nodes}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all nodes in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_adda7045b629c706b370392245826b334}{clear\+Nodes}} ()
+\begin{DoxyCompactList}\small\item\em Clears all nodes in the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_a19319dfd6459a988c69c2019f93cac7a}{prim}} ()
+\begin{DoxyCompactList}\small\item\em Computes the minimum spanning tree (MST) of the graph using Prim\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_a46f1570be34385821dda825d1b488b47}{triangular\+Approximation\+Heuristic}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Computes the triangular approximation heuristic for the Traveling Salesman Problem (TSP). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_aca479065c30755af011de15e5629748e}{backtracking\+Rec}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node, unsigned int current\+Index, double current\+Distance, std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ current\+Path, double \&minimum\+Distance, std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Performs backtracking recursion to find the minimum distance path. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_aa05814750226c2d56c6e5312ea40f617}{TSPBacktracking}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Solves the Traveling Salesman Problem using backtracking and returns the minimum distance. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{class_graph_a06732ae831fd55ebf5a99fbf428381a4}{get\+Num\+Nodes}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the number of nodes in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_ad4b19a5c1456d8106d91f68169f59e2f}{path\+DFS}} (const int \&source, std\+::vector$<$ int $>$ \texorpdfstring{$\ast$}{*}res)
+\begin{DoxyCompactList}\small\item\em Performs a depth-\/first search (DFS) to find the path from the source node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a7033db650d919ae48e43b40c66fadd3b}{set\+Nodes\+Visited}} (bool visited)
+\begin{DoxyCompactList}\small\item\em Sets the visited status of all nodes in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a89439c6818dc9ac66a036ee072a33f0d}{create\+MSTGraph}} (const int \&source, \mbox{\hyperlink{class_graph}{Graph}} \texorpdfstring{$\ast$}{*}mst\+Graph)
+\begin{DoxyCompactList}\small\item\em Creates a minimum spanning tree (MST) graph using the provided source node. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_ac292e74c0df57ea75c45f729ed8082ad}{our\+Heuristic}} (std\+::vector$<$ int $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Implements our heuristic to solve the Traveling Salesman Problem (TSP). We use a MST and look the closest neighbour from the root. Consistently better for large graphs than triangular approx. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_afa14888dafb6e2c8dc55feb35042a18d}{closest\+Neighbour}} (std\+::vector$<$ int $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Implements the closest neighbour heuristic to solve the Traveling Salesman Problem (TSP). \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_a95f4680bb230a1c883a60e7a0092255e}{closest\+Shortcut\+To}} (int index)
+\begin{DoxyCompactList}\small\item\em Finds the closest node to shortcut from the MST. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{class_graph_a8b0db3dbf1368e972e7c551f6084db62}{haversine}} (double lat1, double lon1, double lat2, double lon2)
+\begin{DoxyCompactList}\small\item\em Calculates the haversine distance between two coordinates. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{class_graph_a46002b237bde23afc97582dcc0a38611}{to\+Radians}} (double degrees)
+\begin{DoxyCompactList}\small\item\em Converts degrees to radians. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_graph_a902c5b3eacb66d60752525ab23297a95}\label{class_graph_a902c5b3eacb66d60752525ab23297a95} 
+\index{Graph@{Graph}!````~Graph@{\texorpdfstring{$\sim$}{\string~}Graph}}
+\index{````~Graph@{\texorpdfstring{$\sim$}{\string~}Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Graph()}{\string~Graph()}}
+{\footnotesize\ttfamily Graph\+::\texorpdfstring{$\sim$}{\string~}\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_graph}{Graph} class. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+N\texorpdfstring{$^\wedge$}{\string^}2), where N is the number of nodes in the graph. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_graph_a844c8b6d7afd3d7965f35472832a24ed}\label{class_graph_a844c8b6d7afd3d7965f35472832a24ed} 
+\index{Graph@{Graph}!addBidirectionalEdge@{addBidirectionalEdge}}
+\index{addBidirectionalEdge@{addBidirectionalEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addBidirectionalEdge()}{addBidirectionalEdge()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Bidirectional\+Edge (\begin{DoxyParamCaption}\item[{const int \&}]{source\+Index,  }\item[{const int \&}]{destiny\+Index,  }\item[{double}]{distance }\end{DoxyParamCaption})}
+
+
+
+Adds a bidirectional edge between two nodes in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+Index} & The index of the source node. \\
+\hline
+{\em destiny\+Index} & The index of the destination node. \\
+\hline
+{\em distance} & The distance between the nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the edge was added successfully, false if either node does not exist. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1). 
+\end{DoxyNote}
+\Hypertarget{class_graph_a2b3e1630cd9c4597645d8a3ca8e476a8}\label{class_graph_a2b3e1630cd9c4597645d8a3ca8e476a8} 
+\index{Graph@{Graph}!addNode@{addNode}}
+\index{addNode@{addNode}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Node (\begin{DoxyParamCaption}\item[{const int \&}]{node\+Index,  }\item[{double}]{latitude = {\ttfamily 0},  }\item[{double}]{longitude = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Adds a new node to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Index} & The index of the node to be added. \\
+\hline
+{\em latitude} & The latitude of the node. \\
+\hline
+{\em longitude} & The longitude of the node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the node was added successfully, false if the node already exists. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1). 
+\end{DoxyNote}
+\Hypertarget{class_graph_aca479065c30755af011de15e5629748e}\label{class_graph_aca479065c30755af011de15e5629748e} 
+\index{Graph@{Graph}!backtrackingRec@{backtrackingRec}}
+\index{backtrackingRec@{backtrackingRec}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{backtrackingRec()}{backtrackingRec()}}
+{\footnotesize\ttfamily void Graph\+::backtracking\+Rec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node,  }\item[{unsigned int}]{current\+Index,  }\item[{double}]{current\+Distance,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$}]{current\+Path,  }\item[{double \&}]{minimum\+Distance,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Performs backtracking recursion to find the minimum distance path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The current node being visited. \\
+\hline
+{\em current\+Index} & The index of the current node. \\
+\hline
+{\em current\+Distance} & The current distance traveled. \\
+\hline
+{\em current\+Path} & The current path visited. \\
+\hline
+{\em minimum\+Distance} & The minimum distance found so far. \\
+\hline
+{\em path} & The minimum distance path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n!) -\/ exponential complexity. 
+\end{DoxyNote}
+\Hypertarget{class_graph_adda7045b629c706b370392245826b334}\label{class_graph_adda7045b629c706b370392245826b334} 
+\index{Graph@{Graph}!clearNodes@{clearNodes}}
+\index{clearNodes@{clearNodes}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{clearNodes()}{clearNodes()}}
+{\footnotesize\ttfamily void Graph\+::clear\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears all nodes in the graph. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+N\texorpdfstring{$^\wedge$}{\string^}2), where N is the number of nodes in the graph. 
+\end{DoxyNote}
+\Hypertarget{class_graph_afa14888dafb6e2c8dc55feb35042a18d}\label{class_graph_afa14888dafb6e2c8dc55feb35042a18d} 
+\index{Graph@{Graph}!closestNeighbour@{closestNeighbour}}
+\index{closestNeighbour@{closestNeighbour}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{closestNeighbour()}{closestNeighbour()}}
+{\footnotesize\ttfamily double Graph\+::closest\+Neighbour (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Implements the closest neighbour heuristic to solve the Traveling Salesman Problem (TSP). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The minimum distance path based on the closest neighbour Algorithm. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum distance using the closest neighbour Algorithm. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}3) -\/ cubic complexity. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a95f4680bb230a1c883a60e7a0092255e}\label{class_graph_a95f4680bb230a1c883a60e7a0092255e} 
+\index{Graph@{Graph}!closestShortcutTo@{closestShortcutTo}}
+\index{closestShortcutTo@{closestShortcutTo}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{closestShortcutTo()}{closestShortcutTo()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::closest\+Shortcut\+To (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Finds the closest node to shortcut from the MST. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The node source from where we want to shortcut \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of edges ordered by distance from the node given 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n.\+log(n)) -\/ cubic complexity. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a8b98bca24599e781bd960c8751a8c215}\label{class_graph_a8b98bca24599e781bd960c8751a8c215} 
+\index{Graph@{Graph}!createExtraGraphs@{createExtraGraphs}}
+\index{createExtraGraphs@{createExtraGraphs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{createExtraGraphs()}{createExtraGraphs()}}
+{\footnotesize\ttfamily int Graph\+::create\+Extra\+Graphs (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{edges\+File\+Path }\end{DoxyParamCaption})}
+
+
+
+Creates additional graphs by reading edges from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edges\+File\+Path} & The path to the file containing edge information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer indicating the success or failure of the operation (0 for success, 1 for failure). 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+M), where M is the number of edges. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a89439c6818dc9ac66a036ee072a33f0d}\label{class_graph_a89439c6818dc9ac66a036ee072a33f0d} 
+\index{Graph@{Graph}!createMSTGraph@{createMSTGraph}}
+\index{createMSTGraph@{createMSTGraph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{createMSTGraph()}{createMSTGraph()}}
+{\footnotesize\ttfamily void Graph\+::create\+MSTGraph (\begin{DoxyParamCaption}\item[{const int \&}]{source,  }\item[{\mbox{\hyperlink{class_graph}{Graph}} \texorpdfstring{$\ast$}{*}}]{mst\+Graph }\end{DoxyParamCaption})}
+
+
+
+Creates a minimum spanning tree (MST) graph using the provided source node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The index of the source node. \\
+\hline
+{\em mst\+Graph} & The resulting MST graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V), where V is the number of nodes in the graph. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a43e00cbcebbf5c1c513b32495af9ec9f}\label{class_graph_a43e00cbcebbf5c1c513b32495af9ec9f} 
+\index{Graph@{Graph}!createRealWorldGraph@{createRealWorldGraph}}
+\index{createRealWorldGraph@{createRealWorldGraph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{createRealWorldGraph()}{createRealWorldGraph()}}
+{\footnotesize\ttfamily int Graph\+::create\+Real\+World\+Graph (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{nodes\+File\+Path,  }\item[{const std\+::string \&}]{edges\+File\+Path }\end{DoxyParamCaption})}
+
+
+
+Creates a real-\/world graph by reading nodes and edges from files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes\+File\+Path} & The path to the file containing node information. \\
+\hline
+{\em edges\+File\+Path} & The path to the file containing edge information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer indicating the success or failure of the operation (0 for success, 1 for failure). 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(N + M), where N is the number of nodes and M is the number of edges. 
+\end{DoxyNote}
+\Hypertarget{class_graph_aef5187a5bcfef1d5e16f62d8a548a0a8}\label{class_graph_aef5187a5bcfef1d5e16f62d8a548a0a8} 
+\index{Graph@{Graph}!createToyGraph@{createToyGraph}}
+\index{createToyGraph@{createToyGraph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{createToyGraph()}{createToyGraph()}}
+{\footnotesize\ttfamily int Graph\+::create\+Toy\+Graph (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Creates a toy graph by reading data from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & The path to the file containing graph data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer indicating the success or failure of the operation (0 for success, 1 for failure). 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(N + M), where N is the number of nodes and M is the number of edges. 
+\end{DoxyNote}
+\Hypertarget{class_graph_af6fd3a19fad7f8fac83439ce9c233fe9}\label{class_graph_af6fd3a19fad7f8fac83439ce9c233fe9} 
+\index{Graph@{Graph}!findNode@{findNode}}
+\index{findNode@{findNode}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findNode()}{findNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Graph\+::find\+Node (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Finds a node in the graph by its index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the node to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the found node, or nullptr if the node is not found. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+N), where N is the number of nodes in the graph. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a79e0eaa71a68b231ffc69d09329c6d78}\label{class_graph_a79e0eaa71a68b231ffc69d09329c6d78} 
+\index{Graph@{Graph}!getNodes@{getNodes}}
+\index{getNodes@{getNodes}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getNodes()}{getNodes()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::get\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all nodes in the graph. 
+
+\begin{DoxyReturn}{Returns}
+A vector containing all nodes in the graph. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1). 
+\end{DoxyNote}
+\Hypertarget{class_graph_a06732ae831fd55ebf5a99fbf428381a4}\label{class_graph_a06732ae831fd55ebf5a99fbf428381a4} 
+\index{Graph@{Graph}!getNumNodes@{getNumNodes}}
+\index{getNumNodes@{getNumNodes}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getNumNodes()}{getNumNodes()}}
+{\footnotesize\ttfamily unsigned long Graph\+::get\+Num\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the number of nodes in the graph. 
+
+\begin{DoxyReturn}{Returns}
+The number of nodes in the graph. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1). 
+\end{DoxyNote}
+\Hypertarget{class_graph_a8b0db3dbf1368e972e7c551f6084db62}\label{class_graph_a8b0db3dbf1368e972e7c551f6084db62} 
+\index{Graph@{Graph}!haversine@{haversine}}
+\index{haversine@{haversine}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{haversine()}{haversine()}}
+{\footnotesize\ttfamily double Graph\+::haversine (\begin{DoxyParamCaption}\item[{double}]{lat1,  }\item[{double}]{lon1,  }\item[{double}]{lat2,  }\item[{double}]{lon2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the haversine distance between two coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lat1} & The latitude of the first coordinate. \\
+\hline
+{\em lon1} & The longitude of the first coordinate. \\
+\hline
+{\em lat2} & The latitude of the second coordinate. \\
+\hline
+{\em lon2} & The longitude of the second coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The haversine distance between the two coordinates. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1). 
+\end{DoxyNote}
+\Hypertarget{class_graph_ac292e74c0df57ea75c45f729ed8082ad}\label{class_graph_ac292e74c0df57ea75c45f729ed8082ad} 
+\index{Graph@{Graph}!ourHeuristic@{ourHeuristic}}
+\index{ourHeuristic@{ourHeuristic}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{ourHeuristic()}{ourHeuristic()}}
+{\footnotesize\ttfamily double Graph\+::our\+Heuristic (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Implements our heuristic to solve the Traveling Salesman Problem (TSP). We use a MST and look the closest neighbour from the root. Consistently better for large graphs than triangular approx. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The minimum distance path based on our heuristic. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum distance using our heuristic. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}3) -\/ cubic complexity. 
+\end{DoxyNote}
+\Hypertarget{class_graph_ad4b19a5c1456d8106d91f68169f59e2f}\label{class_graph_ad4b19a5c1456d8106d91f68169f59e2f} 
+\index{Graph@{Graph}!pathDFS@{pathDFS}}
+\index{pathDFS@{pathDFS}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{pathDFS()}{pathDFS()}}
+{\footnotesize\ttfamily void Graph\+::path\+DFS (\begin{DoxyParamCaption}\item[{const int \&}]{source,  }\item[{std\+::vector$<$ int $>$ \texorpdfstring{$\ast$}{*}}]{res }\end{DoxyParamCaption})}
+
+
+
+Performs a depth-\/first search (DFS) to find the path from the source node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The index of the source node. \\
+\hline
+{\em res} & The resulting path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V), where V is the number of nodes in the graph. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a19319dfd6459a988c69c2019f93cac7a}\label{class_graph_a19319dfd6459a988c69c2019f93cac7a} 
+\index{Graph@{Graph}!prim@{prim}}
+\index{prim@{prim}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{prim()}{prim()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::prim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Computes the minimum spanning tree (MST) of the graph using Prim\textquotesingle{}s algorithm. 
+
+\begin{DoxyReturn}{Returns}
+A vector containing all nodes in the MST. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O((V + E) log V) -\/ where V is the number of vertices and E is the number of edges. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a7033db650d919ae48e43b40c66fadd3b}\label{class_graph_a7033db650d919ae48e43b40c66fadd3b} 
+\index{Graph@{Graph}!setNodesVisited@{setNodesVisited}}
+\index{setNodesVisited@{setNodesVisited}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{setNodesVisited()}{setNodesVisited()}}
+{\footnotesize\ttfamily void Graph\+::set\+Nodes\+Visited (\begin{DoxyParamCaption}\item[{bool}]{visited }\end{DoxyParamCaption})}
+
+
+
+Sets the visited status of all nodes in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em visited} & The visited status to set for all nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+N), where N is the number of nodes in the graph. 
+\end{DoxyNote}
+\Hypertarget{class_graph_a46002b237bde23afc97582dcc0a38611}\label{class_graph_a46002b237bde23afc97582dcc0a38611} 
+\index{Graph@{Graph}!toRadians@{toRadians}}
+\index{toRadians@{toRadians}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{toRadians()}{toRadians()}}
+{\footnotesize\ttfamily double Graph\+::to\+Radians (\begin{DoxyParamCaption}\item[{double}]{degrees }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts degrees to radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em degrees} & The angle in degrees. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The angle converted to radians. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1). 
+\end{DoxyNote}
+\Hypertarget{class_graph_a46f1570be34385821dda825d1b488b47}\label{class_graph_a46f1570be34385821dda825d1b488b47} 
+\index{Graph@{Graph}!triangularApproximationHeuristic@{triangularApproximationHeuristic}}
+\index{triangularApproximationHeuristic@{triangularApproximationHeuristic}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{triangularApproximationHeuristic()}{triangularApproximationHeuristic()}}
+{\footnotesize\ttfamily double Graph\+::triangular\+Approximation\+Heuristic (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Computes the triangular approximation heuristic for the Traveling Salesman Problem (TSP). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The minimum distance path based on the triangular approximation heuristic. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum distance using the triangular approximation heuristic. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}2) -\/ quadratic complexity. 
+\end{DoxyNote}
+\Hypertarget{class_graph_aa05814750226c2d56c6e5312ea40f617}\label{class_graph_aa05814750226c2d56c6e5312ea40f617} 
+\index{Graph@{Graph}!TSPBacktracking@{TSPBacktracking}}
+\index{TSPBacktracking@{TSPBacktracking}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{TSPBacktracking()}{TSPBacktracking()}}
+{\footnotesize\ttfamily double Graph\+::\+TSPBacktracking (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Solves the Traveling Salesman Problem using backtracking and returns the minimum distance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The minimum distance path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum distance of the Traveling Salesman Problem. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n!) -\/ exponential complexity. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Graph.\+h\item 
+Graph.\+cpp\end{DoxyCompactItemize}

@@ -16,8 +16,7 @@ public:
     * @note Time complexity: O(1)
     */
     Node(int index, double latitude, double longitude); //used for real-world graph
-    
-    
+
     /**
     * @brief Constructs a Node object with the given index and initializes latitude, longitude, and label to 0 and an empty string, respectively.
     * @param index The index of the node.
@@ -25,7 +24,6 @@ public:
     */
     Node(int index); //used for extra graphs
 
-    
     /**
     * @brief Adds an edge from the current node to the destination node with the given distance.
     * @param destinyNode Pointer to the destination node.
@@ -34,8 +32,7 @@ public:
     * @note Time complexity: O(1)
     */
     Edge* addEdge(Node* destinyNode, double distance);
-    
-    
+
     /**
     * @brief Removes an outgoing edge with the specified destination ID.
     * @param destID The destination ID of the edge to be removed.
@@ -43,22 +40,19 @@ public:
     * @note Time complexity: O(K), where K is the number of outgoing edges from the node.
     */
     bool removeEdge(int destID);
-    
-    
+
     /**
     * @brief Deletes the given edge from the incoming edges of the destination node.
     * @param edge Pointer to the edge to be deleted.
     * @note Time complexity: O(K), where K is the number of incoming edges of the destination node.
     */
     void deleteEdge(Edge* edge);
-    
-    
+
     /**
     * @brief Removes all outgoing edges from the node.
     * @note Time complexity: O(K), where K is the number of outgoing edges from the node.
     */
     void removeOutgoingEdges();
-
 
     /**
     * @brief Returns the index of the node.
@@ -66,24 +60,20 @@ public:
     * @note Time complexity: O(1)
     */
     int getIndex();
-    
-    
+
     /**
     * @brief Returns a vector of outgoing edges from the node.
     * @return Vector of outgoing edges.
     * @note Time complexity: O(1)
     */
     std::vector<Edge*> getOutgoingEdges();
-    
-    
+
     /**
     * @brief Returns a vector of incoming edges to the node.
     * @return Vector of incoming edges.
     * @note Time complexity: O(1)
     */
     std::vector<Edge*> getIncomingEdges();
-
-
 
     /**
     * @brief Sets the distance value of the node.
@@ -92,16 +82,12 @@ public:
     */
     void setDist(double dist);
 
-
-
     /**
     * @brief Sets the visited status of the node.
     * @param visited The visited status to set.
     * @note Time complexity: O(1).
     */
     void setVisited(bool visited);
-
-
 
     /**
     * @brief Sets the path of the node.
@@ -110,16 +96,12 @@ public:
     */
     void setPath(Edge *path);
 
-
-
     /**
     * @brief Retrieves the distance value of the node.
     * @return The distance value of the node.
     * @note Time complexity: O(1).
     */
     double getDist() const;
-
-
 
     /**
     * @brief Checks if the node has been visited.
@@ -128,16 +110,12 @@ public:
     */
     bool isVisited() const;
 
-
-
     /**
     * @brief Retrieves the latitude of the node.
     * @return The latitude of the node.
     * @note Time complexity: O(1).
     */
     double getLatitude() const;
-
-
 
     /**
     * @brief Retrieves the longitude of the node.
@@ -146,16 +124,12 @@ public:
     */
     double getLongitude() const;
 
-
-
     /**
     * @brief Retrieves the path of the node.
     * @return The path of the node.
     * @note Time complexity: O(1).
     */
     Edge *getPath() const;
-
-
 
     /**
     * @brief Retrieves the indegree of the node.
@@ -164,16 +138,12 @@ public:
     */
     unsigned int getIndegree() const;
 
-
-
     /**
     * @brief Sets the indegree of the node.
     * @param indegree The indegree to set.
     * @note Time complexity: O(1).
     */
     void setIndegree(unsigned int indegree);
-
-
 
     /**
     * @brief Compares two nodes based on their distance values.
@@ -222,16 +192,14 @@ public:
     * @note Time complexity: O(1)
     */
     Node* getSourceNode();
-    
-    
+
     /**
     * @brief Returns the destination node of the edge.
     * @return Pointer to the destination node.
     * @note Time complexity: O(1)
     */
     Node* getDestinyNode();
-    
-    
+
     /**
     * @brief Returns the distance of the edge.
     * @return The distance of the edge.
@@ -239,15 +207,12 @@ public:
     */
     double getDistance();
 
-
     /**
     * @brief Sets the reverse edge for the current edge.
     * @param edge Pointer to the reverse edge.
     * @note Time complexity: O(1)
     */
     void setReverse(Edge* edge);
-
-
 
     /**
     * @brief Retrieves the reverse edge of the current edge.
@@ -265,4 +230,4 @@ private:
     Edge* reverseEdge;
 };
 
-#endif //PROJETO_2_NODEEDGE_H
+#endif

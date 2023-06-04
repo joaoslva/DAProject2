@@ -1,21 +1,7 @@
-/*
- * MutablePriorityQueue.h
- * A simple implementation of mutable priority queues, required by Dijkstra algorithm.
- *
- * Created on: 17/03/2018
- *      Author: João Pascoal Faria
- */
-
 #ifndef DA_TP_CLASSES_MUTABLEPRIORITYQUEUE
 #define DA_TP_CLASSES_MUTABLEPRIORITYQUEUE
 
 #include <vector>
-
-
-
-/**
- * class T must have: (i) accessible field int queueIndex; (ii) operator< defined.
- */
 
 template <class T>
 class MutablePriorityQueue {
@@ -31,15 +17,12 @@ public:
 	bool empty();
 };
 
-// Index calculations
 #define parent(i) ((i) / 2)
 #define leftChild(i) ((i) * 2)
 
 template <class T>
 MutablePriorityQueue<T>::MutablePriorityQueue() {
 	H.push_back(nullptr);
-	// indices will be used starting in 1
-	// to facilitate parent/child calculations
 }
 
 template <class T>
@@ -86,7 +69,7 @@ void MutablePriorityQueue<T>::heapifyDown(unsigned i) {
 		if (k >= H.size())
 			break;
 		if (k+1 < H.size() && *H[k+1] < *H[k])
-			++k; // right child of i
+			++k;
 		if ( ! (*H[k] < *x) )
 			break;
 		set(i, H[k]);
@@ -101,4 +84,4 @@ void MutablePriorityQueue<T>::set(unsigned i, T * x) {
 	x->queueIndex = i;
 }
 
-#endif /* DA_TP_CLASSES_MUTABLEPRIORITYQUEUE */
+#endif
