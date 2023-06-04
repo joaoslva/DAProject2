@@ -1,0 +1,136 @@
+\doxysection{Edge Class Reference}
+\hypertarget{class_edge}{}\label{class_edge}\index{Edge@{Edge}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_edge_a5e37599dc79a7d3a6a9e6943e4199785}{Edge}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}source\+Node, \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}destiny\+Node, double distance)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{class_edge}{Edge} object with the given source node, destination node, and distance. \end{DoxyCompactList}\item 
+\Hypertarget{class_edge_abed95771b61b7db169e252e9f84353d4}\label{class_edge_abed95771b61b7db169e252e9f84353d4} 
+{\bfseries Edge} (double distance)
+\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_edge_ac18ac1fa5c63adc4a299b385143d0043}{get\+Source\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Returns the source node of the edge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_edge_a2f3e4aa019bf5fd983cf9477390fc20e}{get\+Destiny\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Returns the destination node of the edge. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_edge_a116f3dc22db6e6fa81100d2b397c9c3b}{get\+Distance}} ()
+\begin{DoxyCompactList}\small\item\em Returns the distance of the edge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a5f2115d329fdf018c85176765148da5c}{set\+Reverse}} (\mbox{\hyperlink{class_edge}{Edge}} \texorpdfstring{$\ast$}{*}edge)
+\begin{DoxyCompactList}\small\item\em Sets the reverse edge for the current edge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge}{Edge}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_edge_ae8f0d324a2519f752cff7182fa9d5800}{get\+Reverse\+Edge}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the reverse edge of the current edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_edge_a5e37599dc79a7d3a6a9e6943e4199785}\label{class_edge_a5e37599dc79a7d3a6a9e6943e4199785} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{source\+Node,  }\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{destiny\+Node,  }\item[{double}]{distance }\end{DoxyParamCaption})}
+
+
+
+Constructs an \doxylink{class_edge}{Edge} object with the given source node, destination node, and distance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+Node} & Pointer to the source node. \\
+\hline
+{\em destiny\+Node} & Pointer to the destination node. \\
+\hline
+{\em distance} & The distance of the edge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1) 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_edge_a2f3e4aa019bf5fd983cf9477390fc20e}\label{class_edge_a2f3e4aa019bf5fd983cf9477390fc20e} 
+\index{Edge@{Edge}!getDestinyNode@{getDestinyNode}}
+\index{getDestinyNode@{getDestinyNode}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getDestinyNode()}{getDestinyNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Edge\+::get\+Destiny\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the destination node of the edge. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the destination node. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1) 
+\end{DoxyNote}
+\Hypertarget{class_edge_a116f3dc22db6e6fa81100d2b397c9c3b}\label{class_edge_a116f3dc22db6e6fa81100d2b397c9c3b} 
+\index{Edge@{Edge}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}}
+{\footnotesize\ttfamily double Edge\+::get\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the distance of the edge. 
+
+\begin{DoxyReturn}{Returns}
+The distance of the edge. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1) 
+\end{DoxyNote}
+\Hypertarget{class_edge_ae8f0d324a2519f752cff7182fa9d5800}\label{class_edge_ae8f0d324a2519f752cff7182fa9d5800} 
+\index{Edge@{Edge}!getReverseEdge@{getReverseEdge}}
+\index{getReverseEdge@{getReverseEdge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getReverseEdge()}{getReverseEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} \texorpdfstring{$\ast$}{*} Edge\+::get\+Reverse\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the reverse edge of the current edge. 
+
+\begin{DoxyReturn}{Returns}
+The reverse edge of the current edge. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1). 
+\end{DoxyNote}
+\Hypertarget{class_edge_ac18ac1fa5c63adc4a299b385143d0043}\label{class_edge_ac18ac1fa5c63adc4a299b385143d0043} 
+\index{Edge@{Edge}!getSourceNode@{getSourceNode}}
+\index{getSourceNode@{getSourceNode}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getSourceNode()}{getSourceNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Edge\+::get\+Source\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the source node of the edge. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the source node. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1) 
+\end{DoxyNote}
+\Hypertarget{class_edge_a5f2115d329fdf018c85176765148da5c}\label{class_edge_a5f2115d329fdf018c85176765148da5c} 
+\index{Edge@{Edge}!setReverse@{setReverse}}
+\index{setReverse@{setReverse}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setReverse()}{setReverse()}}
+{\footnotesize\ttfamily void Edge\+::set\+Reverse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} \texorpdfstring{$\ast$}{*}}]{edge }\end{DoxyParamCaption})}
+
+
+
+Sets the reverse edge for the current edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & Pointer to the reverse edge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(1) 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Node\+Edge.\+h\item 
+Node\+Edge.\+cpp\end{DoxyCompactItemize}

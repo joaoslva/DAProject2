@@ -1,0 +1,72 @@
+\doxysection{Graph.\+h}
+\hypertarget{_graph_8h_source}{}\label{_graph_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROJETO\_2\_GRAPH\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROJETO\_2\_GRAPH\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}NodeEdge.h"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_graph}{Graph}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_graph_a902c5b3eacb66d60752525ab23297a95}{\string~Graph}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_graph_a43e00cbcebbf5c1c513b32495af9ec9f}{createRealWorldGraph}}(\textcolor{keyword}{const}\ std::string\&\ nodesFilePath,\ \textcolor{keyword}{const}\ std::string\&\ edgesFilePath);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_graph_a8b98bca24599e781bd960c8751a8c215}{createExtraGraphs}}(\textcolor{keyword}{const}\ std::string\&\ edgesFilePath);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_graph_aef5187a5bcfef1d5e16f62d8a548a0a8}{createToyGraph}}(\textcolor{keyword}{const}\ std::string\&\ filePath);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a2b3e1630cd9c4597645d8a3ca8e476a8}{addNode}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&nodeIndex,\ \textcolor{keywordtype}{double}\ latitude=0,\ \textcolor{keywordtype}{double}\ longitude=0);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a844c8b6d7afd3d7965f35472832a24ed}{addBidirectionalEdge}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&sourceIndex,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&destinyIndex,\ \textcolor{keywordtype}{double}\ distance);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_graph_af6fd3a19fad7f8fac83439ce9c233fe9}{findNode}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \ \ std::vector<Node*>\ \mbox{\hyperlink{class_graph_a79e0eaa71a68b231ffc69d09329c6d78}{getNodes}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_adda7045b629c706b370392245826b334}{clearNodes}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00094\ \ \ \ \ std::vector<Node\ *>\ \mbox{\hyperlink{class_graph_a19319dfd6459a988c69c2019f93cac7a}{prim}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_graph_a46f1570be34385821dda825d1b488b47}{triangularApproximationHeuristic}}(std::vector<Node\ *>\ \&path);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{double}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_graph_a8b0db3dbf1368e972e7c551f6084db62}{haversine}}(\textcolor{keywordtype}{double}\ lat1,\ \textcolor{keywordtype}{double}\ lon1,\ \textcolor{keywordtype}{double}\ lat2,\ \textcolor{keywordtype}{double}\ lon2);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{double}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_graph_a46002b237bde23afc97582dcc0a38611}{toRadians}}(\textcolor{keywordtype}{double}\ degrees);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_aca479065c30755af011de15e5629748e}{backtrackingRec}}(\mbox{\hyperlink{class_node}{Node}}*\ node,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ currentIndex,\ \textcolor{keywordtype}{double}\ currentDistance,\ std::vector<Node*>\ currentPath,\ \textcolor{keywordtype}{double}\ \&minimumDistance,\ std::vector<Node*>\ \&path);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_graph_aa05814750226c2d56c6e5312ea40f617}{TSPBacktracking}}(std::vector<Node*>\&\ path);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_graph_a06732ae831fd55ebf5a99fbf428381a4}{getNumNodes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_ad4b19a5c1456d8106d91f68169f59e2f}{pathDFS}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&\ source,\ std::vector<int>\ *res);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_a7033db650d919ae48e43b40c66fadd3b}{setNodesVisited}}(\textcolor{keywordtype}{bool}\ visited);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_a89439c6818dc9ac66a036ee072a33f0d}{createMSTGraph}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&\ source,\ \mbox{\hyperlink{class_graph}{Graph}}\ *mstGraph);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_graph_ac292e74c0df57ea75c45f729ed8082ad}{ourHeuristic}}(std::vector<int>\ \&path);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_graph_afa14888dafb6e2c8dc55feb35042a18d}{closestNeighbour}}(std::vector<int>\ \&path);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00195\ \ \ \ \ std::vector<Edge*>\ \mbox{\hyperlink{class_graph_a95f4680bb230a1c883a60e7a0092255e}{closestShortcutTo}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00199\ \ \ \ \ std::vector<Node*>\ nodes;}
+\DoxyCodeLine{00200\ \};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

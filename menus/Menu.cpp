@@ -5,9 +5,8 @@ Menu::Menu(const Graph &graph, const int &graph_loaded): graph(graph), graph_loa
 
 void Menu::start(){
     bool running = true;
-    //TODO Create a dope print saying "Train Management App" with characters
 
-    std::cout << "\n|-----------------------------------------------------------|\n";
+    std::cout << "\n|---------------------------------------------------------|\n";
     std::cout << "|                                                           |\n";
     std::cout << "|        - GRAPH TSP ROUTING ALGORITHMS APP 2000 -          |\n";
     std::cout << "|                                                           |\n";
@@ -192,7 +191,12 @@ void Menu::helpLoadMenu() {
 
         std::cout << "|------------------------Help Page--------------------------|\n";
         std::cout << "|                                                           |\n";
-        //TODO help page description
+        std::cout << "| 1 - Toy Graph: In this option you can load small graphs   |\n";
+        std::cout << "|     with a small number of nodes and edges.               |\n";
+        std::cout << "| 2 - Extra Fully Connected Graph: In this option you can   |\n";
+        std::cout << "|     load bigger graphs that are fully connected.          |\n";
+        std::cout << "| 3 - Real World Graph: In this option you can load graphs  |\n";
+        std::cout << "|     that represent real world scenarios.                  |\n";
         std::cout << "|                                                           |\n";
         std::cout << "| Write 'back' to go to the previous page                   |\n";
         std::cout << "| Enter here: ";
@@ -513,20 +517,29 @@ void Menu::algorithmDescription(int menu) {
     else if(menu == 3){
         std::cout << "|-------------------Algorithm Description-------------------|\n";
         std::cout << "|                                                           |\n";
-        std::cout << "| This algorithm created by us is inspired by the Christof- |\n";
-        std::cout << "| ides algorithm, but it is not the same. It starts simi-   |\n";
-        std::cout << "| larly, by building an MST, starting on node 0, then find- |\n";
-        std::cout << "| ing the minimum weight matching set of edges, and then    |\n";
-        std::cout << "| finding the Eulerian circuit. If an Eulerian circuit is   |\n";
-        std::cout << "| found, then the algorithm is finished. If not, then the   |\n";
-        std::cout << "| algorithm finds the shortest path between the nodes from  |\n";
-        std::cout << "| the Eulerian circuit that are not connected, (if there    |\n";
-        std::cout << "| are more than one) and then finds the shortest path from  |\n";
-        std::cout << "| the last connected node to node 0.                        |\n";
+        std::cout << "| This sections has two different algorithms:               |\n";
+        std::cout << "| The first one is the one that we created, inspired by the |\n";
+        std::cout << "| Christofides algorithm. The algorithm starts similarly,   |\n";
+        std::cout << "| by building an MST. Then, it will try to complete the     |\n";
+        std::cout << "| path by adding the shortest edges that are not in the MST |\n";
+        std::cout << "| and that don't create a cycle. To do so, it uses a func-  |\n";
+        std::cout << "| tion that we created, that finds the shortest shortcut    |\n";
+        std::cout << "| between two nodes. Finally, it finds the Eulerian circuit |\n";
+        std::cout << "| of the graph using a adapted version of the Nearest       |\n";
+        std::cout << "| Neighbour algorithm and outputs the path and the distance. |\n";
+        std::cout << "| The second one is the Near Neighbour algorithm, adapted   |\n";
+        std::cout << "| to our data structures. It is a greedy algorithm that     |\n";
+        std::cout << "| tries to find the best solution by always choosing the    |\n";
+        std::cout << "| nearest neighbour. Therefore, the result is not guaranteed|\n";
+        std::cout << "| to be the best solution, because it relies on the         |\n";
+        std::cout << "| assumption that the nearest neighbour is the best choice  |\n";
+        std::cout << "| and also because even if the nearest neighbour isn't      |\n";
+        std::cout << "| connected to the current node, it will still be chosen by |\n";
+        std::cout << "| an approximation.                                         |\n";
         std::cout << "|                                                           |\n";
         std::cout << "|-----------------------------------------------------------|\n";
         std::cout << "|                                                           |\n";
-        std::cout << "| - OTHER HEURISTICS MENU -                                  |\n";
+        std::cout << "| - OTHER HEURISTICS MENU -                                 |\n";
     }
 }
 
@@ -624,7 +637,7 @@ void Menu::backtrackingAlgorithm() {
 }
 
 bool Menu::startTriApproxMenu() {
-    if(verifyLoadedGraph() == false) return true;
+    if(!verifyLoadedGraph()) return true;
 
     std::string triAproxChoice;
 
@@ -751,7 +764,7 @@ void Menu::triApproxAlgorithm() {
 }
 
 bool Menu::startOtherHeuristicsMenu() {
-    if(verifyLoadedGraph() == false) return true;
+    if(!verifyLoadedGraph()) return true;
 
     std::string otherHeuristicsChoice;
 
