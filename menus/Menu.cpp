@@ -542,17 +542,17 @@ void Menu::backtrackingAlgorithm() {
     std::cout << "|-----------------------------------------------------------|\n";
     std::cout << "|                                                           |\n";
     std::cout << "| The shortest path found has a distance of ";
-    for(int i = 0; i < 4; i++){
-        std::cout << minDistanceString[i];
-    }
 
-    for(int i = 0; i < 59 - 47; i++){
+    std::cout << minDistance;
+    std::cout << " meters";
+
+    for(int i = 0; i < 5; i++){
         std::cout << " ";
     }
 
     std::cout << "|\n";
     std::cout << "| Total time elapsed: " << elapsed.count() << " seconds";
-    for(int i = 0; i < 59 - 30 - std::to_string(elapsed.count()).length(); i++){
+    for(int i = 0; i < 59 - 29 - std::to_string(elapsed.count()).length(); i++){
         std::cout << " ";
     }
     std::cout << "|\n";
@@ -679,9 +679,7 @@ void Menu::triApproxAlgorithm() {
     std::chrono::duration<double> elapsed = finish - start;
 
     std::cout << "| The approximate distance is ";
-    for(int i = 0; i < 4; i++){
-        std::cout << minDistanceString[i];
-    }
+    std::cout << dist;
     std::cout << " meters";
     for(int i = 0; i < 59 - 40; i++){
         std::cout << " ";
@@ -807,9 +805,7 @@ void Menu::otherHeuristicsAlgorithm() {
     std::chrono::duration<double> elapsed = finish - start;
 
     std::cout << "| The approximate distance is ";
-    for(int i = 0; i < 4; i++){
-        std::cout << minDistanceString[i];
-    }
+    std::cout << dist;
     std::cout << " meters";
     for(int i = 0; i < 59 - 40; i++){
         std::cout << " ";
