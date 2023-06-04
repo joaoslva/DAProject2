@@ -448,6 +448,51 @@ double Graph::ourHeuristic(std::vector<int> &path) {
     return distance;
 }
 
+double Graph::closestNeighbour(std::vector<int> &path) {
+    setNodesVisited(false);
+    double distance = 0.0;
+    Node* currentNode = nodes[0];
+    currentNode->setVisited(true);
+    for(int i = 0; i < getNodes().size(); i++){
+        Edge* bestEdge = new Edge(INFINITY);
+        path.push_back(currentNode->getIndex());
+        for(Edge* edge : currentNode->getOutgoingEdges()){
+            if(edge->getDistance() < bestEdge->getDistance() && !edge->getDestinyNode()->isVisited()){
+                bestEdge = edge;
+            }
+        }
+        if(bestEdge->getDistance() != INFINITY){
+            distance += bestEdge->getDistance();
+            currentNode = bestEdge->getDestinyNode();
+            currentNode->setVisited(true);
+        }
+        else {
+            std::vector<Edge *> closestEdges = closestShortcutTo(currentNode->getIndex());
+            for(auto edge:closestEdges){
+                Node* mstShortContender = nodes[edge->getDestinyNode()->getIndex()];
+                if(!mstShortContender->isVisited()){
+                    distance += edge->getDistance();
+                    currentNode = mstShortContender;
+                    currentNode->setVisited(true);
+                    break;
+                }
+            }
+        }
+    }
+
+    if(path.size() == getNodes().size()){
+        Node* realNode = this->nodes[currentNode->getIndex()];
+        for(Edge* edge : realNode->getOutgoingEdges()){
+            if(edge->getDestinyNode()->getIndex() == 0){
+                distance += edge->getDistance();
+                path.push_back(0);
+                return distance;
+            }
+        }
+    }
+    return distance;
+}
+
 std::vector<Edge*> Graph::closestShortcutTo(int index){
 
     std::vector<Edge*> edges;

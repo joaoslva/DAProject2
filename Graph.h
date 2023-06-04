@@ -210,12 +210,26 @@ public:
 
     /**
     * @brief Implements our heuristic to solve the Traveling Salesman Problem (TSP). We use a MST and look the closest neighbour from the root. Consistently better for large graphs than triangular approx.
-    * @param path The minimum distance path based on the Christofides Algorithm.
-    * @return The minimum distance using the Christofides Algorithm.
+    * @param path The minimum distance path based on our heuristic.
+    * @return The minimum distance using our heuristic.
     * @note Time complexity: O(n^3) - cubic complexity.
     */
     double ourHeuristic(std::vector<int> &path);
 
+    /**
+    * @brief Implements the closest neighbour heuristic to solve the Traveling Salesman Problem (TSP).
+    * @param path The minimum distance path based on the closest neighbour Algorithm.
+    * @return The minimum distance using the closest neighbour Algorithm.
+    * @note Time complexity: O(n^3) - cubic complexity.
+    */
+    double closestNeighbour(std::vector<int> &path);
+
+    /**
+    * @brief Finds the closest node to shortcut from the MST
+    * @param index The node source from where we want to shortcut
+    * @return List of edges ordered by distance from the node given
+    * @note Time complexity: O(n.log(n)) - cubic complexity.
+    */
     std::vector<Edge*> closestShortcutTo(int index);
 
 

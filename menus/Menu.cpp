@@ -760,8 +760,9 @@ bool Menu::startOtherHeuristicsMenu() {
     std::cout << "| - OTHER HEURISTICS MENU -                                 |\n";
     while(true){
         std::cout << "|                                                           |\n";
-        std::cout << "| 1 - Run the algorithm                                     |\n";
-        std::cout << "| 2 - See a short description of the algorithm              |\n";
+        std::cout << "| 1 - Run our heuristic!                                    |\n";
+        std::cout << "| 2 - Run closest neighbour heuristic                       |\n";
+        std::cout << "| 3 - See a short description of the algorithm              |\n";
         std::cout << "| r - Return to the main menu                               |\n";
         std::cout << "| q - Quit the program                                      |\n";
         std::cout << "|                                                           |\n";
@@ -770,10 +771,14 @@ bool Menu::startOtherHeuristicsMenu() {
         std::cout << "|                                                           |\n";
 
         if(otherHeuristicsChoice == "1"){
-            otherHeuristicsAlgorithm();
+            ourHeuristicsAlgorithm();
         }
 
         else if(otherHeuristicsChoice == "2"){
+            closestNeighbourAlgorithm();
+        }
+
+        else if(otherHeuristicsChoice == "3"){
             algorithmDescription(3);
         }
 
@@ -795,11 +800,90 @@ bool Menu::startOtherHeuristicsMenu() {
     }
 }
 
-void Menu::otherHeuristicsAlgorithm() {
+void Menu::ourHeuristicsAlgorithm() {
     std::vector<int> path;
 
     auto start = std::chrono::high_resolution_clock::now();
     double dist = graph.ourHeuristic(path);
+    auto finish = std::chrono::high_resolution_clock::now();
+    std::string minDistanceString = std::to_string(dist);
+    std::chrono::duration<double> elapsed = finish - start;
+
+    std::cout << "| The approximate distance is ";
+    std::cout << dist;
+    std::cout << " meters";
+    for(int i = 0; i < 59 - 40; i++){
+        std::cout << " ";
+    }
+    std::cout << "|\n";
+    std::cout << "| Total time elapsed: " << elapsed.count() << " seconds";
+    for(int i = 0; i < 59 - 30 - std::to_string(elapsed.count()).length(); i++){
+        std::cout << " ";
+    }
+    std::cout << "|\n";
+    std::cout << "|                                                           |\n";
+    std::cout << "| Do you wish to see the path?                              |\n";
+    std::cout << "| Enter here your choice (yes/no): ";
+    std::string choice;
+    while (true){
+        std::getline(std::cin, choice);
+        if(choice == "yes"){
+            int charCounter = 1;
+            std::cout << "|                                                           |\n";
+            std::cout << "| The path is:                                              |\n";
+            std::cout << "| ";
+            for(int i = 0; i < path.size(); i++){
+                charCounter += (4 + std::to_string(path[i]).length());
+                if (charCounter > 58){
+                    for(int j = 0; j < 59 - charCounter + std::to_string(path[i]).length() + 4; j++){
+                        std::cout << " ";
+                    }
+                    std::cout << "|\n";
+                    std::cout << "| ";
+                    charCounter = (1 + 4 + std::to_string(path[i]).length());
+                }
+                if(i == path.size() - 1){
+                    std::cout << path[i];
+                    charCounter -= 4;
+                }
+                else{
+                    std::cout << path[i] << " -> ";
+                }
+            }
+
+            for(int j = 0; j < 59 - charCounter; j++){
+                std::cout << " ";
+            }
+
+            std::cout << "|\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "|-----------------------------------------------------------|\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| - OTHER HEURISTICS MENU -                                 |\n";
+            break;
+        }
+        else if(choice == "no"){
+            std::cout << "|                                                           |\n";
+            std::cout << "|-----------------------------------------------------------|\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| - OTHER HEURISTICS MENU -                                 |\n";
+            break;
+        }
+        else{
+            std::cout << "|                                                           |\n";
+            std::cout << "| Not a valid input, please try again                       |\n";
+            std::cout << "|                                                           |\n";
+            std::cout << "| Do you wish to see the path?                              |\n";
+            std::cout << "| Enter here your choice (yes/no): ";
+        }
+    }
+}
+
+void Menu::closestNeighbourAlgorithm() {
+    std::vector<int> path;
+
+    auto start = std::chrono::high_resolution_clock::now();
+    double dist = graph.closestNeighbour(path);
     auto finish = std::chrono::high_resolution_clock::now();
     std::string minDistanceString = std::to_string(dist);
     std::chrono::duration<double> elapsed = finish - start;

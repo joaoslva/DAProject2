@@ -193,11 +193,18 @@ public:
 
 
     /**
-    * @brief Runs the Other Heuristics algorithm.
+    * @brief Runs the Heuristic we created.
     * @note The algorithm calculates the approximate distance and displays the result.
     * @note Time complexity: O(n), where n is the number of nodes in the graph.
     */
-    void otherHeuristicsAlgorithm();
+    void ourHeuristicsAlgorithm();
+
+    /**
+    * @brief Runs the Closest Neighbour Heuristic.
+    * @note The algorithm calculates the approximate distance and displays the result.
+    * @note Time complexity: O(n), where n is the number of nodes in the graph.
+    */
+    void closestNeighbourAlgorithm();
 };
 
 
