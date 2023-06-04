@@ -801,7 +801,7 @@ void Menu::otherHeuristicsAlgorithm() {
     std::vector<int> path;
 
     auto start = std::chrono::high_resolution_clock::now();
-    double dist = graph.ourTryOnChristofidesAlgorithm(path);
+    double dist = graph.ourHeuristic(path);
     auto finish = std::chrono::high_resolution_clock::now();
     std::string minDistanceString = std::to_string(dist);
     std::chrono::duration<double> elapsed = finish - start;

@@ -1,4 +1,5 @@
 #include <xmath.h>
+#include <queue>
 #include "Graph.h"
 #include "MutablePriorityQueue.h"
 
@@ -282,7 +283,7 @@ std::vector<Node *> Graph::prim() {
         v->setVisited(false);
     }
 
-    // start with an arbitrary vertex
+    // start with an arbitrary Node
     Node* s = nodes.front();
     s->setDist(0);
 
@@ -390,7 +391,7 @@ void Graph::createMSTGraph(const int & source, Graph *mstGraph) {
     }
 }
 
-double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
+double Graph::ourHeuristic(std::vector<int> &path) {
     Graph mstGraph;
     for(int i=0; i<nodes.size(); i++){
         mstGraph.addNode(i);
@@ -401,37 +402,10 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
 
     createMSTGraph(0, &mstGraph); //Creates a MST graph by using the MST created by Prim's algorithm
 
-    mstGraph.setNodesIndegree(); //Sets the indegree of each node
-
-    std::vector<std::pair<std::pair<int, int>, double>> oddNodesEdges;
-    for (auto v: mstGraph.getNodes()){//Creates a graph with the odd degree nodes of the MST
-        if(v->getIndegree() % 2 != 0){
-            oddNodesGraph.addNode(v->getIndex(), v->getLatitude(), v->getLongitude());
-            Node* w = this->findNode(v->getIndex());
-            for(Edge* edge: w->getOutgoingEdges()){
-                Node* pointedTo = mstGraph.findNode(edge->getDestinyNode()->getIndex());
-                if(pointedTo->getIndegree() % 2 != 0){
-                    if(std::find(oddNodesEdges.begin(), oddNodesEdges.end(), std::make_pair(std::make_pair(edge->getDestinyNode()->getIndex(), v->getIndex()), edge->getDistance())) == oddNodesEdges.end())
-                        oddNodesEdges.push_back(std::make_pair(std::make_pair(v->getIndex(), edge->getDestinyNode()->getIndex()), edge->getDistance()));
-                }
-            }
-        }
-    }
-
-    for (auto e: oddNodesEdges){//Adds the edges to the oddNodesGraph
-        oddNodesGraph.addBidirectionalEdge(e.first.first, e.first.second, e.second);
-    }
-
-    std::vector<Edge*> toAdd = minimumWeightMatching(oddNodesGraph);//Creates a minimum weight matching set of edges to add to the MST
-
-    for (auto e: toAdd){//Adds the edges to the MST
-        mstGraph.addBidirectionalEdge(e->getSourceNode()->getIndex(), e->getDestinyNode()->getIndex(), e->getDistance());
-    }
-
     mstGraph.setNodesVisited(false);
 
     double distance = 0.0;
-    Node* currentNode = mstGraph.findNode(0);
+    Node* currentNode = mstGraph.nodes[0];
     currentNode->setVisited(true);
 
     for(int i = 0; i < mstGraph.getNodes().size(); i++){
@@ -450,7 +424,7 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
         else {
             std::vector<Edge *> closestEdges = closestShortcutTo(currentNode->getIndex());
             for(auto edge:closestEdges){
-                Node* mstShortContender = mstGraph.findNode(edge->getDestinyNode()->getIndex());
+                Node* mstShortContender = mstGraph.nodes[edge->getDestinyNode()->getIndex()];
                 if(!mstShortContender->isVisited()){
                     distance += edge->getDistance();
                     currentNode = mstShortContender;
@@ -462,7 +436,7 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
     }
 
     if(path.size() == mstGraph.getNodes().size()){
-        Node* realNode = this->findNode(currentNode->getIndex());
+        Node* realNode = this->nodes[currentNode->getIndex()];
         for(Edge* edge : realNode->getOutgoingEdges()){
             if(edge->getDestinyNode()->getIndex() == 0){
                 distance += edge->getDistance();
@@ -472,43 +446,6 @@ double Graph::ourTryOnChristofidesAlgorithm(std::vector<int> &path) {
         }
     }
     return distance;
-}
-
-std::vector<Edge*> Graph::minimumWeightMatching(Graph &graph) {
-    graph.setNodesVisited(false);
-
-    std::vector<Edge*> edges;
-
-    for(auto v : graph.getNodes()) {
-         for(auto e : v->getOutgoingEdges()) {
-            if(std::find(edges.begin(), edges.end(), e->getReverseEdge()) == edges.end())
-                edges.push_back(e);
-        }
-    }
-
-    std::sort(edges.begin(), edges.end(), [](Edge* e1, Edge* e2) {
-        return e1->getDistance() < e2->getDistance();
-    });
-
-    std::vector<Edge*> matching;
-
-    for(auto e : edges) {
-        if(!e->getSourceNode()->isVisited() && !e->getDestinyNode()->isVisited()) {
-            matching.push_back(e);
-            e->getSourceNode()->setVisited(true);
-            e->getDestinyNode()->setVisited(true);
-        }
-    }
-
-    return matching;
-}
-
-bool Graph::allVisitedExcept(int index){
-    for (auto node:nodes){
-        if (!node->isVisited() && node->getIndex() != index)
-            return false;
-    }
-    return true;
 }
 
 std::vector<Edge*> Graph::closestShortcutTo(int index){

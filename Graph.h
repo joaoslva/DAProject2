@@ -5,6 +5,7 @@
 #include <string>
 #include <cmath>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <fstream>
 #include <filesystem>
@@ -213,7 +214,7 @@ public:
     * @return The minimum distance using the Christofides Algorithm.
     * @note Time complexity: O(n^3) - cubic complexity.
     */
-    double ourTryOnChristofidesAlgorithm(std::vector<int> &path);
+    double ourHeuristic(std::vector<int> &path);
 
 
 
