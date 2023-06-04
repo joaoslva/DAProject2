@@ -3,4 +3,4 @@ project(Projeto_2)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Projeto_2 main.cpp Graph.cpp Graph.h NodeEdge.cpp NodeEdge.h menus/Menu.cpp menus/Menu.h menus/Menu.cpp menus/Menu.cpp)
+add_executable(Projeto_2 main.cpp code/Graph.cpp code/Graph.h code/NodeEdge.cpp code/NodeEdge.h code/Menu.cpp code/Menu.h code/Menu.cpp code/Menu.cpp)

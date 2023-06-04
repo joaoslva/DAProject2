@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <iomanip>
 #include <chrono>
-#include "../Graph.h"
+#include "Graph.h"
 
 class Menu {
 protected:

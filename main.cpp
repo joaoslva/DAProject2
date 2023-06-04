@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Graph.h"
-#include "menus/Menu.h"
+#include "code/Graph.h"
+#include "code/Menu.h"
 
 int main() {
     Graph g;
